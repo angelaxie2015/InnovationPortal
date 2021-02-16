@@ -1,5 +1,5 @@
 version: 2.1
-obs: 
+orbs:
   node: circleci/node@1.1.0
 jobs:
   build:
@@ -17,4 +17,4 @@ jobs:
           command: npm start
           background: true
       - run: sleep 5
-      - run: npm rum test
+    - run: npm run test
