@@ -1,4 +1,4 @@
-version: 2.1
+version:  2.1
 orbs:
   node: circleci/node@1.1.0
 jobs:
@@ -10,11 +10,11 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install mocha
-            - run: alias mocha='./node_modules/.bin/_mocha'
-            - run: npm install
-      - run:
-          command: npm start
+            - run:  npm install mocha
+            - run:  alias mocha='./node_modules/.bin/_mocha'
+            - run:  npm install
+      - run:  
+          command:  npm start
           background: true
       - run: sleep 5
-    - run: npm run test
+      - run:  npm run test
