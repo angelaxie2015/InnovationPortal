@@ -68,6 +68,7 @@ describe("UF Directory Server Unit Tests", function () {
 
           bodyData = JSON.parse(body);
 
+          // Compares body, the data passed into the function, to our response from ther server
           should.deepEqual(JSON.parse(response.body), bodyData);
 
           done();
