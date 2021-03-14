@@ -1,13 +1,26 @@
 {
-  "name": "Discussion4",
+  "name": "innovation-portal",
   "version": "1.0.0",
-  "description": "Testing Practice",
+  "description": "MERN App for Innovation Academy",
   "main": "server.js",
   "scripts": {
     "test": "mocha server.test.js",
     "start": "node server.js"
   },
-  "author": "Medhir Bhargava & Alex Webber",
+  "contributors": [
+    {
+      "name": "Tianwei Xie"
+    },
+    {
+      "name": "Sean Kullman"
+    },
+    {
+      "name": "Kevin Tram"
+    },
+    {
+      "name": "Lukian Bogdanets"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "should": "^7.1.1"
