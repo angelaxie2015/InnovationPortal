@@ -39,7 +39,7 @@ export default function Events(props) {
     return (
         <div className={classes.root}>
             <SearchBar onSearch={handleSearch} item="Event"/>
-            <Grid container spacing={1} mb={0} className={classes.gridList} >
+            <Grid container spacing={1} className={classes.gridList} >
                 {events.map((event) => (
                     <Grid item key={event.title}>
                         <Event event={event}/>
