@@ -1,5 +1,8 @@
 import React from 'react';
-import { Grid, Button } from '@material-ui/core';
+import { 
+    Grid,
+    Button
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -12,7 +15,7 @@ export default function NonUserNavBar() {
     const classes = useStyles();
 
     return (
-        <Grid justify={'flex-end'}>
+        <Grid container className={classes.root} justify={'flex-end'}>
             <Grid item key={"Events"}>
                 <Button className={classes.navLink}>Events</Button>
             </Grid>
@@ -24,4 +27,4 @@ export default function NonUserNavBar() {
             </Grid>
         </Grid>
     );
-};
+}
