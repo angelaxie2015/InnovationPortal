@@ -28,6 +28,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.12.0",
+    "node": "^15.10.0",
     "request": "^2.67.0"
-  }
+  },
+  "type": "module"
 }
