@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Event from './event/Event'
 import SearchBar from '../SearchBar'
-import { Grid, GridList, GridListTile } from '@material-ui/core';
+import NonUserNavBar from '../NonUserNavBar'
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -38,6 +39,7 @@ export default function Events(props) {
 
     return (
         <div className={classes.root}>
+            <NonUserNavBar/>
             <SearchBar onSearch={handleSearch} item="Event"/>
             <Grid container spacing={1} className={classes.gridList} >
                 {events.map((event) => (
