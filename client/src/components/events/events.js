@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Event from './event/event'
+import Event from './event/Event'
+import SearchBar from '../SearchBar'
 import { Grid, GridList, GridListTile } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -31,8 +32,13 @@ export default function Events(props) {
 
     const classes = useStyles();
 
+    const handleSearch = query => {
+        console.log(query);
+    }
+
     return (
         <div className={classes.root}>
+            <SearchBar onSearch={handleSearch} item="Event"/>
             <Grid container spacing={1} mb={0} className={classes.gridList} >
                 {events.map((event) => (
                     <Grid item key={event.title}>
