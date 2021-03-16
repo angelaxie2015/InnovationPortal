@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import logo from '../../logo.png'
 import SearchBar from '../SearchBar'
 import NonUserNavBar from '../NonUserNavBar'
 import EventsGallery from './EventsGallery'
@@ -38,6 +39,7 @@ export default function Events(props) {
 
     return (
         <div className={classes.root}>
+            <img src={logo} height={100}/>
             <NonUserNavBar/>
             <SearchBar onSearch={handleSearch} item="Event"/>
             <EventsGallery events={events}/>
