@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import { Card, CardContent } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
+import placeholder from '../../../placeholder.png'
+import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-      minWidth: 350,
-      minHeight: 200,
+      minWidth: "33%",
+      height: "100%"
+    },
+    img: {
+        width: 350,
+        height: 300, 
+        objectFit: "cover",
     },
 });
 
@@ -18,6 +22,7 @@ export default function Event(props) {
 
     return (
         <Card variant="outlined"className={classes.root}>
+            <img src={placeholder} className={classes.img}/>
             <CardContent>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>

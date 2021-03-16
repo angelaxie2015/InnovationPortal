@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     IconButton,
     InputBase,
-    Paper
+    Card
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
       padding: '2px 4px',
       display: 'flex',
       alignItems: 'center',
-      width: 400,
+      borderRadius: 10,
     },
     input: {
       marginLeft: 1,
@@ -39,7 +39,7 @@ export default function SearchBar(props) {
     }
 
     return (
-        <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
+        <Card variant="outlined" component="form" className={classes.root} onSubmit={handleSubmit}>
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
@@ -49,6 +49,6 @@ export default function SearchBar(props) {
                 inputProps={{ 'aria-label': `search ${props.item}` }}
                 onChange={handleChange}
             />
-        </Paper>
+        </Card>
     );
 }

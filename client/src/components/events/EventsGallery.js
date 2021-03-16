@@ -16,7 +16,7 @@ export default function EventsGallery(props) {
     const { events } = props;
 
     return (
-        <Grid container spacing={1} className={classes.gridList}>
+        <Grid container spacing={6} className={classes.gridList}>
             {events.map((event) => (
                 <Grid item key={event.title}>
                     <Event event={event}/>

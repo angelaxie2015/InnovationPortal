@@ -3,22 +3,36 @@ import logo from '../../logo.png';
 import SearchBar from '../SearchBar';
 import NonUserNavBar from '../NonUserNavBar';
 import EventsGallery from './EventsGallery';
+import { Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
         minWidth: "100%",
+        minHeight: "100vh",
         overflow: 'hidden',
-      },
-      gridList: {
-        flexWrap: 'nowrap',
-        overflow: 'scroll',
-      },
+    },
+    logo: {
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+    },
+    searchBar: {
+        marginTop: 20,
+    },
+    button: {
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+    },
+    eventsGalleryContainer: {
+        marginTop: 50,
+        marginBottom: 50,
+    }
 });
 
 export default function Events(props) {
+    // hardcode events for testing purposes and because DB not set up yet
     const [events, setEvents] = useState([
         { title: "React Workshop", date: new Date("Sun Mar 14 2021"), desc: "Learn React" },
         { title: "Taco Tuesday", date: new Date("Mon Mar 15 2021"), desc: "Eat Tacos" },
@@ -39,10 +53,27 @@ export default function Events(props) {
 
     return (
         <div className={classes.root}>
-            <img src={logo} height={100}/>
-            <NonUserNavBar/>
-            <SearchBar onSearch={handleSearch} item="Event"/>
-            <EventsGallery events={events}/>
+            <Grid container>
+                <Grid item>
+                    <img src={logo} height={100} className={classes.logo}/>
+                </Grid>
+                <Grid item xs>
+                    <NonUserNavBar/>
+                    <Grid container item alignItems="center">
+                        <Grid item xs className={classes.searchBar}>
+                            <SearchBar onSearch={handleSearch} item="Event" />
+                        </Grid>
+                        <Grid item className={classes.button}>
+                            <Button variant="contained">Past Events</Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs className={classes.eventsGalleryContainer}>
+                    <EventsGallery events={events} />
+                </Grid>
+            </Grid>
+           
+            
         </div>
     );
 };
