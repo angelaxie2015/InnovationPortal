@@ -1,21 +1,28 @@
 import express from "express"
 import mongoose from "mongoose"
+import cors from "cors"
+import dotenv from "dotenv"
 
 const app = express();
-const port = process.env.PORT || 8001;
-const connection_url = "mongodb+srv://admin:@cluster0.lb7ej.mongodb.net/ufia-db?retryWrites=true&w=majority"
+const PORT = process.env.PORT || 8001;
+dotenv.config();
 
+app.use(express.json());
+app.use(cors());
 
 //Database configuration 
-mongoose.connect(connection_url, {
+mongoose.connect(process.env.MONGODB_CONNECTION, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,
+}, (err) => {
+	if (err) throw err;
+	console.log("MongoDB Connection made");
 });
 
 app.get("/", (req, res) => res.status(200).send("hello world"));
 
-app.listen(port, () => console.log('Listening on port ${port}'));
+app.listen(PORT, () => console.log(`The server started on port: ${ PORT }`));
 
 
 
