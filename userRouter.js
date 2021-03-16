@@ -12,6 +12,13 @@ router.post("/register", (req, res) => {
 				.status(400)
 				.json({ msg: "Please enter all fields."});
 		}
+		//check if the user is unique
+		const existUser = User.findOne({email});
+		if(existUser){
+			return res
+				.status(400)
+				.json({msg: "User already exists."});
+		}
 
 		//making sure password is at least 8 characters
 		if(password.length < 8){
@@ -27,14 +34,13 @@ router.post("/register", (req, res) => {
 				.json({ msg: "Passwords need to match."});
 		}
 
+		
+
+
 	}catch(err){
 		console.log(err);
 		res.status(500).send();
 	}
-
-	// if(!email || !password || !checkPassword || !userName){
-	// 	return res.status(400).json( {msg: "Please fill out all fields"} );
-	// }
 
 
 });
