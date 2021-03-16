@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
 import dotenv from "dotenv"
+import userRouter from "./userRouter.js"
 
 const app = express();
 const PORT = process.env.PORT || 8001;
@@ -23,6 +24,8 @@ mongoose.connect(process.env.MONGODB_CONNECTION, {
 app.get("/", (req, res) => res.status(200).send("hello world"));
 
 app.listen(PORT, () => console.log(`The server started on port: ${ PORT }`));
+
+app.use(userRouter)
 
 
 
