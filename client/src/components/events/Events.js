@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import logo from '../../logo.png'
-import SearchBar from '../SearchBar'
-import NonUserNavBar from '../NonUserNavBar'
-import EventsGallery from './EventsGallery'
+import React, { useState } from 'react';
+import logo from '../../logo.png';
+import SearchBar from '../SearchBar';
+import NonUserNavBar from '../NonUserNavBar';
+import EventsGallery from './EventsGallery';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
