@@ -70,12 +70,10 @@ export default function Events(props) {
                         </Hidden>
                     </Grid>
                 </Grid>
-                <Grid item xs className={classes.eventsGalleryContainer}>
+                <Grid item xs={12} className={classes.eventsGalleryContainer}>
                     <EventsGallery events={events} />
                 </Grid>
             </Grid>
-           
-            
         </div>
     );
 };
