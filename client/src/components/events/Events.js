@@ -28,6 +28,7 @@ const useStyles = makeStyles({
     eventsGalleryContainer: {
         marginTop: 30,
         marginBottom: 50,
+        overflow: 'hidden',
     }
 });
 
