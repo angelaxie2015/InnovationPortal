@@ -3,7 +3,7 @@ import logo from '../../logo.png';
 import SearchBar from '../SearchBar';
 import NonUserNavBar from '../NonUserNavBar';
 import EventsGallery from './EventsGallery';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -19,14 +19,14 @@ const useStyles = makeStyles({
     },
     searchBar: {
         marginTop: 20,
+        marginRight: 30,
     },
     button: {
-        marginLeft: 30,
         marginRight: 30,
         marginTop: 20,
     },
     eventsGalleryContainer: {
-        marginTop: 50,
+        marginTop: 30,
         marginBottom: 50,
     }
 });
@@ -63,9 +63,11 @@ export default function Events(props) {
                         <Grid item xs className={classes.searchBar}>
                             <SearchBar onSearch={handleSearch} item="Event" />
                         </Grid>
-                        <Grid item className={classes.button}>
-                            <Button variant="contained">Past Events</Button>
-                        </Grid>
+                        <Hidden only="xs">
+                            <Grid item className={classes.button}>
+                                <Button variant="contained">Past Events</Button>
+                            </Grid>
+                        </Hidden>
                     </Grid>
                 </Grid>
                 <Grid item xs className={classes.eventsGalleryContainer}>
