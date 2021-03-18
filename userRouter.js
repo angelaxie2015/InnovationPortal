@@ -1,9 +1,10 @@
 import express from "express"
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs" //for hashing password
 import User from "./userdb.js"
 
 const router = express.Router();
 
+//register
 router.post("/register", async (req, res) => {
 	try{
 		const {email, pass, checkPassword, userName} = req.body;
@@ -52,8 +53,33 @@ router.post("/register", async (req, res) => {
 		console.log(err);
 		res.status(500).send();
 	}
+});
 
+//login
+router.post("/login", async (req, res) => {
+	try{
+		const {email, pass} = req.body;
 
+		if(!email || !pass){
+			return res
+				.status(400)
+				.json({ msg: "Please enter all fields."});
+		}
+
+		//find if the user exists
+		const findUser = await User.findOne({email});
+
+		if(!findUser)
+			return res.status(400).json({msg: "Wrong email address"});
+
+		//check if the user password is correct 
+		const correctPass = await bcrypt.compare(pass, findUser.password);
+		if(!correctPass)
+			return res.status(400).json({msg: "Incorrect password."});
+
+	}catch(err){
+		console.err(err);
+	}
 });
 
 export default router;
