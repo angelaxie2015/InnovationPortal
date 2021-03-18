@@ -10,6 +10,11 @@ router.post("/register", async (req, res) => {
 		const {email, pass, checkPassword, userName} = req.body;
 
 		//validating all fields
+		if(!pass){
+			return res
+				.status(400)
+				.json({ msg: "Please enter email."});
+		}
 		if(!email || !pass || !checkPassword || !userName){
 			return res
 				.status(400)
