@@ -25,7 +25,7 @@ app.get("/", (req, res) => res.status(200).send("hello world"));
 
 app.listen(PORT, () => console.log(`The server started on port: ${ PORT }`));
 
-app.use(userRouter)
+app.use("/users", userRouter)
 
 
 

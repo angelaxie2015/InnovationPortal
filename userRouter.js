@@ -139,4 +139,35 @@ router.delete("/delete", auth, async (req, res) => {
 	}
 });
 
+//checking if a user is logged in
+router.post("/checkToken", async (req, res) => {
+	try{
+		const token = req.header("x-auth-token");
+		if(!token)
+			return res.json(false);
+
+		const verified = jwt.verify(token, process.env.JWT_CODE);
+		if(!verified)
+			return res.json(false);
+
+		//make sure user is in the database
+		const user = await User.findById(verified.id);
+		if(!user)
+			return res.json(false);
+
+		return res.json(true);
+	}catch(err){
+		console.log(err);
+		res.status(500).send();
+	}
+});
+
+//find the user who's currently logged in
+router.get("/", auth, async (req, res) => {
+	console.log("heererere");
+	const user = await User.findById(res.user);
+	res.json(user);
+	console.log("heererere");
+});
+
 export default router;
