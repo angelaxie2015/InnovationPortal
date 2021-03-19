@@ -23,7 +23,7 @@ class Login extends React.Component {
 	  return (
 	  	<div id="log-in">
 	  		<div>
-	  			<img class="login-image" src="../../ia_logo.png"></img>
+	  			<img class="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
 	    		<h1>Login</h1>
 
 		    	<div>

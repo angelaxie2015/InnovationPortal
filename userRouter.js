@@ -1,5 +1,6 @@
 import express from "express"
 import bcrypt from "bcryptjs" //for hashing password
+import jwt from "jsonwebtoken"
 import User from "./userdb.js"
 
 const router = express.Router();
@@ -10,11 +11,6 @@ router.post("/register", async (req, res) => {
 		const {email, pass, checkPassword, userName} = req.body;
 
 		//validating all fields
-		if(!pass){
-			return res
-				.status(400)
-				.json({ msg: "Please enter email."});
-		}
 		if(!email || !pass || !checkPassword || !userName){
 			return res
 				.status(400)
@@ -60,6 +56,7 @@ router.post("/register", async (req, res) => {
 	}
 });
 
+ 
 //login
 router.post("/login", async (req, res) => {
 	try{
@@ -88,9 +85,24 @@ router.post("/login", async (req, res) => {
 				.json({msg: "Incorrect password."});
 		}
 
+		const token = jwt.sign({id: findUser._id}, process.env.JWT_CODE);
+		res.json({
+			token, 
+			user:{
+				id: findUser._id,
+				name: findUser.userName
+			}
+		});
+
 	}catch(err){
-		console.err(err);
+		console.log(err);
 	}
+});
+
+
+//delete events 
+router.delete("/delete", async (req, res) => {
+
 });
 
 export default router;
