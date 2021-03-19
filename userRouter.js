@@ -100,9 +100,43 @@ router.post("/login", async (req, res) => {
 });
 
 
-//delete events 
-router.delete("/delete", async (req, res) => {
+const auth = (req, res, next) => {
+	try{
+		const token = req.header("x-auth-token");
+		if(!token){
+			return res
+				.status(401)
+				.json({msg: "No authentication found"});
+		}
 
+		const acc = jwt.verify(token, process.env.JWT_CODE);
+		if(!acc){
+			return res
+				.status(401)
+				.json({msg: "None found"});
+		}
+
+		res.user = acc.id;
+		console.log("here");
+		next();
+
+	}catch(err){
+		console.log(err);
+		res.status(500).send();
+	}
+};
+
+
+//deleting a user
+router.delete("/delete", auth, async (req, res) => {
+	try{
+		const userToLogOut = await User.findByIdAndDelete(res.user);
+
+		res.json(userToLogOut);
+	}catch(err){
+		console.log(err);
+		res.status(500).send();
+	}
 });
 
 export default router;
