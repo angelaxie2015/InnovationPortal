@@ -20,10 +20,23 @@ function App() {
       }
 
       const tokenRes = await Axios.post(
-        "http://localhost:8001/checkToken",
+        "http://localhost:8001/users/checkToken",
         null,
         { headers: { "x-auth-token": token} }
       );
+
+      console.log(tokenRes.data)
+      if(tokenRes.data){
+        const userRes = await Axios.get(
+          "http://localhost:8001/users/",
+          { headers: { "x-auth-token": token} }
+        )
+        setUser({
+          token, 
+          user: userRes.data
+        })
+      }
+
     };
 
     checkLoggedIn();
