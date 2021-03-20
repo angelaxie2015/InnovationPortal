@@ -16,11 +16,21 @@ export default function Register(){
 	const submit = async (e) => {
 		e.preventDefault();
 		const newUser = {email, pass, checkPassword, userName};
-		await Axios.post("http://localhost:8001/users/register", newUser);
+		await Axios.post("http://localhost:8001/users/register", newUser).catch((error) => {
+										console.log(error.message);
+										console.log(error.response.data);  
+         								console.log(error.response.status);  
+         								console.log(error.response.headers);
+									});
 
 		console.log("in register");
 
-		const loginRes = await Axios.post("http://localhost:8001/users/login", {email, pass});
+		const loginRes = await Axios.post("http://localhost:8001/users/login", {email, pass}).catch((error) => {
+										console.log(error.message);
+										console.log(error.response.data);  
+         								console.log(error.response.status);  
+         								console.log(error.response.headers);
+									});
 		
 		setUser({
 			token: loginRes.data.token,
@@ -60,7 +70,7 @@ export default function Register(){
 
 		    		<label htmlFor="register-password">Verify Password</label>
 		    		<input 
-		    			id="register-password" 
+		    			id="register-checkpassword" 
 		    			type="password" 
 		    			onChange={ (e) => setCheckPassword(e.target.value)} 
 		    		/>
