@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/userContext.js";
+import TextField from '@material-ui/core/Button';
 import './login.css';
 import Axios from "axios";
 
@@ -47,44 +48,48 @@ export default function Register(){
 	  	<div id="log-in">
 	  		<div>
 	  			<img className="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
-	    		<h1>Register</h1>
 
-		    	<div>
-		    		Hello Register
-		    	</div>
+	  			<div className="register-form">
+			    	<form onSubmit={submit}>
 
-		    	<form onSubmit={submit}>
-		    		<label htmlFor="register-email">Email</label>
-		    		<input 
-		    			id="register-email" 
-		    			type="email" 
-		    			onChange={ (e) => setEmail(e.target.value)} 
-		    		/>
+				    	<label htmlFor="register-userName">User Name</label>	    	
+				    	<input 
+			    			id="register-userName" 
+			    			type="text" 
+			    			onChange={ (e) => setUserName(e.target.value)} 
+			    		/>
 
-		    		<label htmlFor="register-password">Password</label>
-		    		<input 
-		    			id="register-password" 
-		    			type="password" 
-		    			onChange={ (e) => setPass(e.target.value)} 
-		    		/>
+			    		<br />
 
-		    		<label htmlFor="register-password">Verify Password</label>
-		    		<input 
-		    			id="register-checkpassword" 
-		    			type="password" 
-		    			onChange={ (e) => setCheckPassword(e.target.value)} 
-		    		/>
+			    		<label htmlFor="register-email">Email</label>
+			    		<input 
+			    			id="register-email" 
+			    			type="email" 
+			    			onChange={ (e) => setEmail(e.target.value)} 
+			    		/>
 
-		    		<label htmlFor="register-userName">User Name</label>
-		    		<input 
-		    			id="register-userName" 
-		    			type="text" 
-		    			onChange={ (e) => setUserName(e.target.value)} 
-		    		/>
+			    		<br />
 
-		    		<input type="submit" value="Register" />
-		    	</form>
+			    		<label htmlFor="register-password">Password</label>
+			    		<input 
+			    			id="register-password" 
+			    			type="password" 
+			    			onChange={ (e) => setPass(e.target.value)} 
+			    		/>
 
+			    		<br />
+
+			    		<label htmlFor="register-password">Verify Password</label>
+			    		<input 
+			    			id="register-checkpassword" 
+			    			type="password" 
+			    			onChange={ (e) => setCheckPassword(e.target.value)} 
+			    		/>
+
+			    		<br />
+			    		<input id="register-button" type="submit" value="Register" />
+			    	</form>
+			    </div>
 	    	</div>
 	    </div>
 
