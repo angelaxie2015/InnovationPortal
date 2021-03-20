@@ -34,34 +34,39 @@ export default function Login(){
 		history.push("/");
 	}
 
+	const redirect = async (e) => {
+		e.preventDefault();
+
+		history.push("/register");
+	}
+
 	return (
 	  	<div id="log-in">
 	  		<div>
 	  			<img className="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
-	    		<h1>Register</h1>
 
-		    	<div>
-		    		Hello Login
-		    	</div>
+	  			<div className="register-form">
+			    	<form onSubmit={submit}>
+			    		<label htmlFor="login-email">Email</label>
+			    		<input 
+			    			id="login-email" 
+			    			type="email" 
+			    			onChange={ (e) => setEmail(e.target.value)} 
+			    		/>
 
-		    	<form onSubmit={submit}>
-		    		<label htmlFor="login-email">Email</label>
-		    		<input 
-		    			id="login-email" 
-		    			type="email" 
-		    			onChange={ (e) => setEmail(e.target.value)} 
-		    		/>
+			    		<label htmlFor="login-password">Password</label>
+			    		<input 
+			    			id="login-password" 
+			    			type="password" 
+			    			onChange={ (e) => setPass(e.target.value)} 
+			    		/>
 
-		    		<label htmlFor="login-password">Password</label>
-		    		<input 
-		    			id="logins-password" 
-		    			type="password" 
-		    			onChange={ (e) => setPass(e.target.value)} 
-		    		/>
-
-		    		<input type="submit" value="Login" />
-		    	</form>
-
+			    		
+			    		<a className="direct-to-reg" onClick={redirect} >Not an Ambassador? Register</a>
+			    		<br />
+			    		<input id="register-button" type="submit" value="Login" />
+			    	</form>
+			    </div>
 	    	</div>
 	    </div>
 

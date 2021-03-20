@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/userContext.js";
-import TextField from '@material-ui/core/Button';
 import './login.css';
 import Axios from "axios";
 
@@ -46,7 +45,7 @@ export default function Register(){
 
 	return (
 	  	<div id="log-in">
-	  		<div>
+	  		<div className="auth">
 	  			<img className="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
 
 	  			<div className="register-form">
