@@ -5,6 +5,8 @@ import Register from './login/register.js'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import UserContext from "./context/userContext.js"
 import Axios from "axios"
+import LogNav from "./login/logNav.js"
+
 function App() {
   const [user, setUser] = useState({
     token: undefined,
@@ -47,6 +49,7 @@ function App() {
 
       <BrowserRouter>
           <UserContext.Provider value={{user, setUser}}>
+            <LogNav />
             <Switch>
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />

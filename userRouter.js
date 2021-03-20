@@ -95,7 +95,8 @@ router.post("/login", async (req, res) => {
 		});
 
 	}catch(err){
-		console.log(err);
+		console.log("Log in error");
+		console.log(err.response);
 	}
 });
 
@@ -166,8 +167,11 @@ router.post("/checkToken", async (req, res) => {
 router.get("/", auth, async (req, res) => {
 	console.log("heererere");
 	const user = await User.findById(res.user);
-	res.json(user);
-	console.log("heererere");
+	res.json({ //if user is found, display its name and email
+		email: user.email,
+		id: user._id,
+		userName: user.userName
+	});
 });
 
 export default router;

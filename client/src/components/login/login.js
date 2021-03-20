@@ -1,48 +1,69 @@
-import React, { useState } from 'react'
-import './login.css'
+import React, { useState, useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import UserContext from "../context/userContext.js";
+import './login.css';
+import Axios from "axios";
 
-class Login extends React.Component {
+export default function Login(){
+	const [email, setEmail] = useState();
+	const [pass, setPass] = useState();
 
-	constructor(props) {
-	    super(props);
-	    this.state = {value: ''};
-	    this.handleChange = this.handleChange.bind(this);
-	    this.handleSubmit = this.handleSubmit.bind(this);
+	const {setUser} = useContext(UserContext);
+	const history = useHistory();
+
+	const submit = async (e) => {
+		e.preventDefault();
+		const loginUser = {email, pass};
+
+		const loginRes = await Axios.post("http://localhost:8001/users/login", loginUser)
+									.catch((error) => {
+										console.log(error.message);
+										console.log(error.response.data);  
+         								console.log(error.response.status);  
+         								console.log(error.response.headers);
+									});
+		
+		setUser({
+			token: loginRes.data.token,
+			user: loginRes.data.user 
+		});
+
+		localStorage.setItem("auth-token", loginRes.data.token);
+
+		//redirecting
+		history.push("/");
 	}
 
-	handleChange(event) {
-	    this.setState({value: event.target.value});
-    }
-
-	handleSubmit(event) {
-	    alert('A name was submitted: ' + this.state.value);
-	    event.preventDefault();
-	}
-
-	render() {
-	  return (
+	return (
 	  	<div id="log-in">
 	  		<div>
-	  			<img class="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
-	    		<h1>Login</h1>
+	  			<img className="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
+	    		<h1>Register</h1>
 
 		    	<div>
-		    		Hello
+		    		Hello Login
 		    	</div>
 
+		    	<form onSubmit={submit}>
+		    		<label htmlFor="login-email">Email</label>
+		    		<input 
+		    			id="login-email" 
+		    			type="email" 
+		    			onChange={ (e) => setEmail(e.target.value)} 
+		    		/>
 
-		    	 <form onSubmit={this.handleSubmit}>
-	        		<label> Name:
-	          			<input type="text" value={this.state.value} onChange={this.handleChange} />
-	        		</label>
-	        		<input type="submit" value="Submit" />
-	        	</form>
+		    		<label htmlFor="login-password">Password</label>
+		    		<input 
+		    			id="logins-password" 
+		    			type="password" 
+		    			onChange={ (e) => setPass(e.target.value)} 
+		    		/>
+
+		    		<input type="submit" value="Login" />
+		    	</form>
 
 	    	</div>
 	    </div>
 
-	  )
-	}
+	);
 }
-
-export default Login;
