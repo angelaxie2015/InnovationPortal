@@ -59,7 +59,6 @@ export default function Events(props) {
                     <img src={logo} height={100} className={classes.logo}/>
                 </Grid>
                 <Grid item xs>
-                    <NonUserNavBar/>
                     <Grid container item alignItems="center">
                         <Grid item xs className={classes.searchBar}>
                             <SearchBar onSearch={handleSearch} item="Event" />

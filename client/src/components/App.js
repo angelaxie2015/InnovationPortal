@@ -8,6 +8,7 @@ import UserContext from "./context/userContext.js"
 import Axios from "axios"
 import LogNav from "./login/logNav.js"
 import Events from './events/Events';
+import NonUserNavBar from "./NonUserNavBar.js"
 
 function App() {
   const [user, setUser] = useState({
@@ -50,11 +51,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
           <UserContext.Provider value={{user, setUser}}>
-            <LogNav />
-            <Events/>
+            <NonUserNavBar />
             <Switch>
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
+
+              <Route path='/' component={Events} />
 
               <Route path='/'>
                 <Redirect to='/' />

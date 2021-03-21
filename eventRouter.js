@@ -3,7 +3,7 @@ import Event from "./eventdb.js"
 
 const router = express.Router();
 
-//post an event
+//post an event  events/
 router.post("/", async (req, res) => {
 	try{
 		const {title, time, description, image} = req.body;
