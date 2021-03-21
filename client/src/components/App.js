@@ -1,4 +1,5 @@
 import './App.css';
+import EventDetails from './events/EventDetails';
 import React, { useState, useEffect } from 'react';
 import Login from './login/login.js'
 import Register from './login/register.js'
@@ -7,7 +8,6 @@ import UserContext from "./context/userContext.js"
 import Axios from "axios"
 import LogNav from "./login/logNav.js"
 import Events from './events/Events';
-
 
 function App() {
   const [user, setUser] = useState({
@@ -62,7 +62,6 @@ function App() {
             </Switch>
           </UserContext.Provider>
       </BrowserRouter>
-
     </div>
   );
 }
