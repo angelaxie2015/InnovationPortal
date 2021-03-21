@@ -6,7 +6,6 @@ import Register from './login/register.js'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import UserContext from "./context/userContext.js"
 import Axios from "axios"
-import LogNav from "./login/logNav.js"
 import Events from './events/Events';
 import NonUserNavBar from "./NonUserNavBar.js"
 

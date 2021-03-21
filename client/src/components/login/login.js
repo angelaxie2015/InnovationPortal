@@ -42,7 +42,7 @@ export default function Login(){
 
 	return (
 	  	<div id="log-in">
-	  		<div>
+	  		<div className="auth">
 	  			<img className="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
 
 	  			<div className="register-form">
