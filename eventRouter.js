@@ -14,14 +14,6 @@ router.post("/", async (req, res) => {
 					.json({msg: "Enter all fields"});
 		}
 
-		// //make sure no duplicate event
-		// const event = await Event.find( {title: title} );
-		// if(event){
-		// 	return res
-		// 			.status(400)
-		// 			.json({msg: "Already have this event"});
-		// }
-
 		const newEvent = new Event({
 			title, time, description, image
 		});
