@@ -7,7 +7,7 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyForm />
+    <App />
 
   </React.StrictMode>,
   document.getElementById('root')

@@ -23,6 +23,7 @@ export default function NonUserNavBar() {
     const register = () => history.push("/register");
     const login = () => history.push("/login");
     const event = () => history.push("/events");
+    const contact = () => history.push("/contact");
     const logout = () => {
         setUser({
             token: undefined,
@@ -36,7 +37,7 @@ export default function NonUserNavBar() {
                 <Button onClick={event} className={classes.navLink}>Events</Button>
             </Grid>
             <Grid item key={"Contact"}>
-                <Button className={classes.navLink}>Contact</Button>
+                <Button onClick={contact} className={classes.navLink}>Contact</Button>
             </Grid>
             
             { user.user ? 

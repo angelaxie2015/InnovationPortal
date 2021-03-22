@@ -7,6 +7,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import UserContext from "./context/userContext.js"
 import Axios from "axios"
 import Events from './events/Events';
+import MyForm from './contact/contact.js'
 import NonUserNavBar from "./NonUserNavBar.js"
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
             <Switch>
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
-
+              <Route path='/contact' component={MyForm} />
               <Route path='/' component={Events} />
 
               <Route path='/'>
