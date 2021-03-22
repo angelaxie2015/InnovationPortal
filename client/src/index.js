@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App'
+import MyForm from './components/contact/contact'
+
 import './index.css';
-import Basic from './components/contact/contact'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Basic />
+    <MyForm />
 
   </React.StrictMode>,
   document.getElementById('root')
