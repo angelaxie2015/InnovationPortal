@@ -1,5 +1,5 @@
 import './App.css';
-import EventDetails from './events/EventDetails';
+//import EventDetails from './events/EventDetails';
 import React, { useState, useEffect } from 'react';
 import Login from './login/login.js'
 import Register from './login/register.js'
@@ -9,6 +9,7 @@ import Axios from "axios"
 import Events from './events/Events';
 import MyForm from './contact/contact.js'
 import NonUserNavBar from "./NonUserNavBar.js"
+import FullScreenEvent from "./events/event/FullScreenEvent.js"
 
 function App() {
   const [user, setUser] = useState({
@@ -56,6 +57,7 @@ function App() {
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route path='/contact' component={MyForm} />
+              <Route path='/eventDetail' component={FullScreenEvent} />
               <Route path='/' component={Events} />
 
               <Route path='/'>

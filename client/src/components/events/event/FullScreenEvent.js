@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from "react-router-dom";
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,8 +23,11 @@ const useStyles = makeStyles({
 });
 
 
-export default function Event(props) {
-    const { event } = props;
+export default function FullEvent(props) {
+    //const { event } = props;
+    const location = useLocation();
+    console.log("location state is " + location.state.title);
+    const event = location.state;
     const classes = useStyles();
 
     return (
@@ -51,5 +55,6 @@ export default function Event(props) {
                 </CardContent>
             </Card>
         </Container>
+
     );
 };

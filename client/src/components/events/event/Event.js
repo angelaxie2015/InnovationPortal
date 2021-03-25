@@ -2,6 +2,8 @@ import React from 'react';
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
+import FullEvent from './FullScreenEvent';
 
 const useStyles = makeStyles({
     root: {
@@ -15,10 +17,17 @@ const useStyles = makeStyles({
     },
 });
 
-
 export default function Event(props) {
     const { event } = props;
     const classes = useStyles();
+    
+    const history = useHistory();
+    const openEventDetails = (event) => {
+        history.push({
+            pathname: "/eventDetail",
+            state: event
+        });
+    };
 
     return (
         <Card variant="outlined"className={classes.root}>
@@ -26,9 +35,13 @@ export default function Event(props) {
             <CardContent>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
+                    
+                    <a onClick={ () => openEventDetails(event) }>
                         <Typography gutterBottom variant="h5" component="h2">
                             {event.title}
                         </Typography>
+                    </a>
+                    
                     </Grid>
                     <Grid item xs={6}>
                         <Typography align="right" variant="body1" component="p">
