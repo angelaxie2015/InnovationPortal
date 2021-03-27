@@ -29,9 +29,12 @@ export default function NonUserNavBar() {
             token: undefined,
             user: undefined
         });
+        localStorage.setItem("auth-token", undefined);
     };
 
     return (
+        
+
         <Grid container className={classes.root} justify={'flex-end'}>
             <Grid item key={"Events"}>
                 <Button onClick={event} className={classes.navLink}>Events</Button>
@@ -39,7 +42,7 @@ export default function NonUserNavBar() {
             <Grid item key={"Contact"}>
                 <Button onClick={contact} className={classes.navLink}>Contact</Button>
             </Grid>
-            
+
             { user.user ? 
                 (
                     <Grid item key={"Log Out"}>
@@ -57,6 +60,7 @@ export default function NonUserNavBar() {
                 )
 
             }
+   
         </Grid>
     );
 }

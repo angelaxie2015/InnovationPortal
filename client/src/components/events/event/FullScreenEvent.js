@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useLocation } from "react-router-dom";
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
+import UserContext from "../../context/userContext.js";
 
 const useStyles = makeStyles({
     root: {
@@ -29,6 +30,7 @@ export default function FullEvent(props) {
     console.log("location state is " + location.state.title);
     const event = location.state;
     const classes = useStyles();
+    const { user, setUser } = useContext(UserContext);
 
     return (
         <Container>
@@ -54,6 +56,17 @@ export default function FullEvent(props) {
                     </Grid>
                 </CardContent>
             </Card>
+
+             { user.user ? 
+            <>
+            { user.user.role == "admin" ?
+                <h1>Admin</h1> : <h1>Ambassador</h1>
+            } 
+            </>
+            :
+            <h1>not logged in </h1>
+        }
+
         </Container>
 
     );

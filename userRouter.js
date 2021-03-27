@@ -10,8 +10,8 @@ router.post("/register", async (req, res) => {
 	try{
 		const {email, pass, checkPassword, userName} = req.body;
 
-		userRole = "ambassador";
-		
+		const role = "ambassador";
+
 		//validating all fields
 		if(!email || !pass || !checkPassword || !userName){
 			return res
@@ -46,7 +46,7 @@ router.post("/register", async (req, res) => {
 
 		//store to db
 		const newUser = new User({
-			email, password, userName, userRole
+			email, password, userName, role
 		});
 		
 		const saveUser = await newUser.save();
@@ -88,11 +88,13 @@ router.post("/login", async (req, res) => {
 		}
 
 		const token = jwt.sign({id: findUser._id}, process.env.JWT_CODE);
+
 		res.json({
 			token, 
 			user:{
 				id: findUser._id,
-				name: findUser.userName
+				name: findUser.userName,
+				role: findUser.role,
 			}
 		});
 

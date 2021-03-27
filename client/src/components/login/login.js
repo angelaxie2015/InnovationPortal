@@ -22,11 +22,14 @@ export default function Login(){
          								console.log(error.response.status);  
          								console.log(error.response.headers);
 									});
-		
+
 		setUser({
 			token: loginRes.data.token,
-			user: loginRes.data.user 
+			user: loginRes.data.user,
+			role: loginRes.data.user.role,
 		});
+
+
 
 		localStorage.setItem("auth-token", loginRes.data.token);
 
