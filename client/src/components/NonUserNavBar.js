@@ -27,7 +27,8 @@ export default function NonUserNavBar() {
     const logout = () => {
         setUser({
             token: undefined,
-            user: undefined
+            user: undefined,
+            role: undefined,
         });
         localStorage.setItem("auth-token", undefined);
     };

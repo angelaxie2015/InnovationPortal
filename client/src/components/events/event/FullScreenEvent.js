@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { useLocation } from "react-router-dom";
 import placeholder from '../../../placeholder.png'
-import { Card, CardContent, Typography, Grid, Container } from '@material-ui/core';
+import { Card, CardContent, Typography, Grid, Container, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import UserContext from "../../context/userContext.js";
@@ -33,41 +33,75 @@ export default function FullEvent(props) {
     const { user, setUser } = useContext(UserContext);
 
     return (
-        <Container>
-            <Card variant="outlined"className={classes.root}>
-                <img src={placeholder} className={classes.img}/>
-                <CardContent>
-                    <Grid className={classes.content}>
-                        <Grid item xs={12}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {event.title}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="body1" component="p">
-                                {event.date.toDateString()}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="body2" component="p">
-                                {event.desc}
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card>
+        <Grid container spacing={3}>
+       
+            <Grid item xs={9}>
+                <Container>
+                    <Card variant="outlined"className={classes.root}>
+                        <img src={placeholder} className={classes.img}/>
+                        <CardContent>
+                            <Grid className={classes.content}>
+                                <Grid item xs={12}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {event.title}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="body1" component="p">
+                                        {event.date.toDateString()}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="body2" component="p">
+                                        {event.desc}
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                </Container>             
+            </Grid>
+            
+            <Grid item xs={3}>
+                { user.user ? 
+                    <>
+                    { user.user.role === "admin" ?
+                        <>
+                            <h1>Admin</h1> 
+                            <Button>
+                                Check In
+                            </Button><br />
+                            <Button>
+                                Edit
+                            </Button><br />
+                            <Button>
+                                Statistics 
+                            </Button><br />
+                            <Button>
+                                Delete
+                            </Button>
+                        </> : 
 
-             { user.user ? 
-            <>
-            { user.user.role == "admin" ?
-                <h1>Admin</h1> : <h1>Ambassador</h1>
-            } 
-            </>
-            :
-            <h1>not logged in </h1>
-        }
+                        <>
+                            <h1>Ambassador</h1>
 
-        </Container>
+                            <Button>
+                                Check In
+                            </Button><br />
+                            <Button>
+                                Edit
+                            </Button>
+                        </>
+
+                    } 
+                    </> :
+                    
+                    <h1>not logged in </h1>
+                }  
+            </Grid>    
+        </Grid>
+
+        
 
     );
 };
