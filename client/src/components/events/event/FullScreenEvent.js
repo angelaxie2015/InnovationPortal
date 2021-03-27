@@ -5,6 +5,10 @@ import { Card, CardContent, Typography, Grid, Container, Button } from '@materia
 import { makeStyles } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import UserContext from "../../context/userContext.js";
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import EditIcon from '@material-ui/icons/Edit';
+import "./event.css"
 
 const useStyles = makeStyles({
     root: {
@@ -33,74 +37,85 @@ export default function FullEvent(props) {
     const { user, setUser } = useContext(UserContext);
 
     return (
-        <Grid container spacing={3}>
-       
-            <Grid item xs={9}>
-                <Container>
-                    <Card variant="outlined"className={classes.root}>
-                        <img src={placeholder} className={classes.img}/>
-                        <CardContent>
-                            <Grid className={classes.content}>
-                                <Grid item xs={12}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {event.title}
-                                    </Typography>
+        <div className="fullevent">
+            <Grid container spacing={1}>
+           
+                <Grid item xs={10}>
+                    <Container>
+                        <Card variant="outlined"className={classes.root}>
+                            <img src={placeholder} className={classes.img}/>
+                            <CardContent>
+                                <Grid className={classes.content}>
+                                    <Grid item xs={12}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {event.title}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Typography variant="body1" component="p">
+                                            {event.date.toDateString()}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Typography variant="body2" component="p">
+                                            {event.desc}
+                                        </Typography>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <Typography variant="body1" component="p">
-                                        {event.date.toDateString()}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Typography variant="body2" component="p">
-                                        {event.desc}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </CardContent>
-                    </Card>
-                </Container>             
-            </Grid>
-            
-            <Grid item xs={3}>
-                { user.user ? 
-                    <>
-                    { user.user.role === "admin" ?
+                            </CardContent>
+                        </Card>
+                    </Container>             
+                </Grid>
+                
+                <Grid item xs={2}>
+                    { user.user ? 
                         <>
-                            <h1>Admin</h1> 
-                            <Button>
-                                Check In
-                            </Button><br />
-                            <Button>
-                                Edit
-                            </Button><br />
-                            <Button>
-                                Statistics 
-                            </Button><br />
-                            <Button>
-                                Delete
-                            </Button>
-                        </> : 
+                        { user.user.role === "admin" ?
+                            <>
+                                <h1>Admin</h1> 
+                                <Button variant="contained" color="primary" startIcon={<CheckIcon />}>
+                                    Check In
+                                </Button ><br /><br />
+                                <Button variant="contained" startIcon={<EditIcon />}>
+                                    Edit
+                                </Button><br /><br />
+                                <Button variant="contained">
+                                    Statistics 
+                                </Button><br /><br />
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    startIcon={<DeleteIcon />}
+                                >
+                                   Delete
+                                </Button>
+                            </> : 
 
+                            <>
+                                <h1>Ambassador</h1>
+
+                                <Button variant="contained" color="secondary">
+                                    Check In
+                                </Button><br />
+                                <Button variant="contained" color="secondary">
+                                    Edit
+                                </Button>
+                            </>
+
+                        } 
+                        </> :
+                        
                         <>
-                            <h1>Ambassador</h1>
-
-                            <Button>
-                                Check In
-                            </Button><br />
-                            <Button>
-                                Edit
+                            <h1>not logged in </h1>
+                            <Button variant="contained" color="secondary">
+                                Interested
                             </Button>
                         </>
-
-                    } 
-                    </> :
-                    
-                    <h1>not logged in </h1>
-                }  
-            </Grid>    
-        </Grid>
-
+                    }  
+                </Grid>    
+            </Grid>
+        </div>
         
 
     );
