@@ -10,6 +10,8 @@ router.post("/register", async (req, res) => {
 	try{
 		const {email, pass, checkPassword, userName} = req.body;
 
+		userRole = "ambassador";
+		
 		//validating all fields
 		if(!email || !pass || !checkPassword || !userName){
 			return res
@@ -44,7 +46,7 @@ router.post("/register", async (req, res) => {
 
 		//store to db
 		const newUser = new User({
-			email, password, userName
+			email, password, userName, userRole
 		});
 		
 		const saveUser = await newUser.save();
