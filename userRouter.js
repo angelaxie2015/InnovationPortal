@@ -182,7 +182,18 @@ router.post("/checkin", async (req, res) => {
 	console.log(req.body);
 
 	const user = await User.findById(req.body.user.user.id);
-	user.update(user.events.push(req.body.event.title));
+
+	console.log("fingind event");
+	
+
+	const eventExist = await User.findOne({_id: req.body.user.user.id, events: req.body.event} );
+	console.log(eventExist);
+
+	if(eventExist){
+		console.log("event already exist");
+	}
+	else 
+		user.update(user.events.push(req.body.event));
 	const saveUser = await user.save();
 	
 	console.log(user)
