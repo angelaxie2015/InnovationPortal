@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { useLocation } from "react-router-dom";
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, Container, Button } from '@material-ui/core';
@@ -10,6 +10,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Axios from "axios";
+import PopUp from "./PopUp.js";
 import "./event.css"
 
 const useStyles = makeStyles({
@@ -38,8 +39,11 @@ export default function FullEvent(props) {
     const event = location.state;
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
+    const [ buttonPopup, setButtonPopup ] = useState(false);
+
 
     const checkIn = async () => {
+        //setButtonPopup(true);
         console.log("checking in");
 
         console.log("finished setting up user");
@@ -91,7 +95,7 @@ export default function FullEvent(props) {
                 <Grid item xs={2}>
                     { user.user ? 
                         <>
-                        <Button variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
+                        <Button variant="contained" onClick={() => setButtonPopup(true)} color="primary" startIcon={<CheckIcon />}>
                             Check In
                         </Button ><br /><br />
                         <Button variant="contained" startIcon={<EditIcon />}>
@@ -119,6 +123,13 @@ export default function FullEvent(props) {
                         >
                            Delete
                         </Button>
+
+                        <PopUp trigger={buttonPopup} setTrigger={setButtonPopup}>
+                            <Button variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
+                                Check In
+                            </Button ><br /><br />
+                        </PopUp>
+
                         </> :
                         
                         <>
@@ -130,6 +141,8 @@ export default function FullEvent(props) {
                     }  
                 </Grid>    
             </Grid>
+
+            
         </div>
         
 
