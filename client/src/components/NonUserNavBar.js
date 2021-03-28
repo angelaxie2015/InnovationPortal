@@ -38,6 +38,7 @@ export default function NonUserNavBar() {
             role: undefined,
         });
         localStorage.setItem("auth-token", undefined);
+        history.push("/");
     };
 
     return (
