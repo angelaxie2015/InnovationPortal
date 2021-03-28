@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Axios from "axios";
 import PopUp from "./PopUp.js";
+import { InputBase } from '@material-ui/core';
 import "./event.css"
 
 const useStyles = makeStyles({
@@ -125,7 +126,14 @@ export default function FullEvent(props) {
                         </Button>
 
                         <PopUp trigger={buttonPopup} setTrigger={setButtonPopup}>
-                            <Button variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
+                               <InputBase
+                                    className={classes.input}
+                                    placeholder={`Enter Passcode: `}
+                                    inputProps={{ 'aria-label': `${props.item}` }}
+                                    
+                                />
+                                <br />
+                            <Button className="checkin-button" variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
                                 Check In
                             </Button ><br /><br />
                         </PopUp>

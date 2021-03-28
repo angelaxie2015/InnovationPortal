@@ -14,9 +14,24 @@
 /* Popup */
 .popup {
 	background-color: #DADADA;
-	background-color: red;
 	position: fixed;
-	left: 50%;
+	left: 25%;
+	width: 50%;
 
-	margin: 2% auto;
+	margin: 0 auto;
+}
+
+.close-btn {
+	position: fixed;
+	right: 25%;
+	background-color: red;
+}
+
+.classes.input {
+	background-color: red;
+}
+
+.checkin-button {
+	position: relative;
+	left: 2%;
 }
