@@ -8,6 +8,8 @@ import UserContext from "../../context/userContext.js";
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import Axios from "axios";
 import "./event.css"
 
 const useStyles = makeStyles({
@@ -26,6 +28,23 @@ const useStyles = makeStyles({
         minheight: "50vh"
     }
 });
+
+const checkIn = async (event, user) => {
+    console.log("checking in");
+    console.log(user);
+
+    const checkIn = await Axios.post("http://localhost:8001/users/checkin", user)
+                                    .catch((error) => {
+                                        console.log(error.message);
+                                        console.log(error.response.data);  
+                                         console.log(error.response.status);  
+                                         console.log(error.response.headers);
+                                    });
+
+
+    
+
+}
 
 
 export default function FullEvent(props) {
@@ -70,40 +89,34 @@ export default function FullEvent(props) {
                 <Grid item xs={2}>
                     { user.user ? 
                         <>
+                        <Button variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
+                            Check In
+                        </Button ><br /><br />
+                        <Button variant="contained" startIcon={<EditIcon />}>
+                            Edit
+                        </Button><br /><br />
                         { user.user.role === "admin" ?
                             <>
                                 <h1>Admin</h1> 
-                                <Button variant="contained" color="primary" startIcon={<CheckIcon />}>
-                                    Check In
-                                </Button ><br /><br />
-                                <Button variant="contained" startIcon={<EditIcon />}>
-                                    Edit
-                                </Button><br /><br />
-                                <Button variant="contained">
+                                <Button variant="contained" startIcon={<EqualizerIcon />}>
                                     Statistics 
                                 </Button><br /><br />
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    className={classes.button}
-                                    startIcon={<DeleteIcon />}
-                                >
-                                   Delete
-                                </Button>
+                                
                             </> : 
 
                             <>
                                 <h1>Ambassador</h1>
-
-                                <Button variant="contained" color="secondary">
-                                    Check In
-                                </Button><br />
-                                <Button variant="contained" color="secondary">
-                                    Edit
-                                </Button>
                             </>
 
                         } 
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            startIcon={<DeleteIcon />}
+                        >
+                           Delete
+                        </Button>
                         </> :
                         
                         <>
@@ -120,3 +133,11 @@ export default function FullEvent(props) {
 
     );
 };
+
+
+
+
+
+
+
+
