@@ -3,7 +3,6 @@ import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import FullEvent from './FullScreenEvent';
 
 const useStyles = makeStyles({
     root: {
@@ -31,7 +30,7 @@ export default function Event(props) {
 
     return (
         <Card variant="outlined"className={classes.root}>
-            <img src={placeholder} className={classes.img}/>
+            <img alt="event" src={placeholder} className={classes.img}/>
             <CardContent>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>

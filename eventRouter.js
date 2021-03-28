@@ -34,7 +34,6 @@ router.post("/", async (req, res) => {
 //checking correct passcode
 router.post("/passcode", async (req, res) => {
 	try{
-		console.log(req.body);
 		//1. find event in the database
 		const event = await Event.findOne({title: req.body.event.title});
 
@@ -56,12 +55,8 @@ router.post("/passcode", async (req, res) => {
 //add attendee
 router.post("/attend", async (req, res) => {
 	try{
-		console.log("in /attend");
-		console.log(req.body);
 		//1. find event in the database
 		const event = await Event.findOne({title: req.body.event.title});
-		console.log("event is");
-		console.log(event);
 					
 		if(event){
 			event.update(event.attendee.push(req.body.user));

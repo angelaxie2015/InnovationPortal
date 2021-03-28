@@ -54,10 +54,6 @@ export default function FullEvent(props) {
 
 
     const checkIn = async () => {
-        //setButtonPopup(true);
-        console.log("checking in");
-        console.log("passcode is " + passcode);
-
         //check if the passcode is correct
         const correctPassword = await Axios.post("http://localhost:8001/events/passcode", {event, passcode})
                                             .catch((error) => {
@@ -66,9 +62,7 @@ export default function FullEvent(props) {
                                                 console.log(error.response.status);  
                                                 console.log(error.response.headers);
                                         });
-
-        console.log("psscode si ");
-        console.log(correctPassword.data);                        
+                      
         if(correctPassword.data){ //if password input is correct
             const checkIn = await Axios.post("http://localhost:8001/users/checkin", {user, event})
                                             .catch((error) => {
@@ -77,7 +71,7 @@ export default function FullEvent(props) {
                                                  console.log(error.response.status);  
                                                  console.log(error.response.headers);
                                             });
-            console.log("here");
+          
             const addAttendee = await Axios.post("http://localhost:8001/events/attend", {user, event})
                                             .catch((error) => {
                                                 console.log(error.message);
@@ -85,8 +79,10 @@ export default function FullEvent(props) {
                                                  console.log(error.response.status);  
                                                  console.log(error.response.headers);
                                             });
+
+            alert("Checked in");
         }else{
-            alert("wrong password");
+            alert("Wrong password");
         }
     }
 
