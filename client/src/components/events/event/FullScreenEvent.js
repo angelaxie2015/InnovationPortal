@@ -28,6 +28,10 @@ const useStyles = makeStyles({
     content: {
         width: "100%",
         minheight: "50vh"
+    },
+    input: {
+        backgroundColor: blue,
+        marginLeft: 3,
     }
 });
 
@@ -41,23 +45,46 @@ export default function FullEvent(props) {
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
     const [ buttonPopup, setButtonPopup ] = useState(false);
+    const [passcode, setPasscode] = useState("");
+
+    const handleChange = event => {
+        setPasscode(event.target.value);
+        
+    }
 
 
     const checkIn = async () => {
         //setButtonPopup(true);
         console.log("checking in");
+        console.log("passcode is " + passcode);
 
-        console.log("finished setting up user");
-
-        console.log(user);
-
-        const checkIn = await Axios.post("http://localhost:8001/users/checkin", {user, event})
-                                        .catch((error) => {
-                                            console.log(error.message);
-                                            console.log(error.response.data);  
-                                             console.log(error.response.status);  
-                                             console.log(error.response.headers);
+        //check if the passcode is correct
+        const correctPassword = await Axios.post("http://localhost:8001/events/passcode", {event, passcode})
+                                            .catch((error) => {
+                                                console.log(error.message);
+                                                console.log(error.response.data);  
+                                                console.log(error.response.status);  
+                                                console.log(error.response.headers);
                                         });
+
+        console.log("psscode si ");
+        console.log(correctPassword.data);                        
+        if(correctPassword.data){ //if password input is correct
+            console.log("psscode si ");
+            console.log(correctPassword);
+
+            console.log(user);
+
+            const checkIn = await Axios.post("http://localhost:8001/users/checkin", {user, event})
+                                            .catch((error) => {
+                                                console.log(error.message);
+                                                console.log(error.response.data);  
+                                                 console.log(error.response.status);  
+                                                 console.log(error.response.headers);
+                                            });
+        }else{
+            alert("wrong password");
+        }
     }
 
     
@@ -126,13 +153,15 @@ export default function FullEvent(props) {
                         </Button>
 
                         <PopUp trigger={buttonPopup} setTrigger={setButtonPopup}>
-                               <InputBase
-                                    className={classes.input}
-                                    placeholder={`Enter Passcode: `}
-                                    inputProps={{ 'aria-label': `${props.item}` }}
-                                    
-                                />
-                                <br />
+                               <div className="input-box">
+                                   <InputBase
+                                        className={classes.input}
+                                        placeholder={`Enter Passcode: `}
+                                        inputProps={{ 'aria-label': `${props.item}` }}
+                                        onChange = {handleChange}
+                                    />
+                                    <br />
+                                </div>
                             <Button className="checkin-button" variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
                                 Check In
                             </Button ><br /><br />

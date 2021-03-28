@@ -6,6 +6,7 @@ const eventSchema = new mongoose.Schema({
 	description: {type: String, required: true},
 	image: { data: Buffer, contentType: String },
 	passcode: {type: String},
+	interestedCount: 0,
 
 });
 
