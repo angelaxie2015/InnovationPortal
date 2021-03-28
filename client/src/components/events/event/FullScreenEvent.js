@@ -70,12 +70,15 @@ export default function FullEvent(props) {
         console.log("psscode si ");
         console.log(correctPassword.data);                        
         if(correctPassword.data){ //if password input is correct
-            console.log("psscode si ");
-            console.log(correctPassword);
-
-            console.log(user);
-
             const checkIn = await Axios.post("http://localhost:8001/users/checkin", {user, event})
+                                            .catch((error) => {
+                                                console.log(error.message);
+                                                console.log(error.response.data);  
+                                                 console.log(error.response.status);  
+                                                 console.log(error.response.headers);
+                                            });
+            console.log("here");
+            const addAttendee = await Axios.post("http://localhost:8001/events/attend", {user, event})
                                             .catch((error) => {
                                                 console.log(error.message);
                                                 console.log(error.response.data);  

@@ -192,11 +192,15 @@ router.post("/checkin", async (req, res) => {
 	if(eventExist){
 		console.log("event already exist");
 	}
-	else 
+	else{
 		user.update(user.events.push(req.body.event));
-	const saveUser = await user.save();
+		const saveUser = await user.save();
 	
-	console.log(user)
+		return res.json(true);
+	}
+	
+	console.log(user);
+	res.json(false);
 });
 
 export default router;
