@@ -58,7 +58,10 @@ router.post("/attend", async (req, res) => {
 		//1. find event in the database
 		const event = await Event.findOne({title: req.body.event.title});
 
-		const duplicate = await Event.findOne({title: req.body.event.title, attendee: req.body.user.user});
+		console.log("event is");
+		console.log(event);
+
+		const duplicate = await Event.findOne({title: req.body.event.title, 'attendee.id' : req.body.user.user.id } );
 
 		console.log("printing duplicate");
 		console.log(req.body);
