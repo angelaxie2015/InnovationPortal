@@ -177,4 +177,12 @@ router.get("/", auth, async (req, res) => {
 	});
 });
 
+router.post("/checkin", async (req, res) => {
+	console.log(req.body);
+
+	const user = await User.findById(req.body.user.id);
+	user.events.push("hi");
+	console.log(user)
+});
+
 export default router;
