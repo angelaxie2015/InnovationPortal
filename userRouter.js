@@ -195,4 +195,11 @@ router.post("/checkin", async (req, res) => {
 	res.json(false);
 });
 
+//get a user
+router.post("/getEvents", async (req, res) => {
+	const user = await User.findById(req.body.user.id);
+
+	return res.json(user);
+});
+
 export default router;
