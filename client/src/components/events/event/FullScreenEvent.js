@@ -41,9 +41,14 @@ export default function FullEvent(props) {
     //const { event } = props;
     const location = useLocation();
     console.log("location state is " + location.state.title);
+
     const event = location.state;
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
+    
+    console.log("full screen event user is");
+    console.log(user);
+
     const [ buttonPopup, setButtonPopup ] = useState(false);
     const [passcode, setPasscode] = useState("");
 
@@ -170,9 +175,6 @@ export default function FullEvent(props) {
                         
                         <>
                             <h1>not logged in </h1>
-                            <Button variant="contained" color="secondary">
-                                Interested
-                            </Button>
                         </>
                     }  
                 </Grid>    

@@ -29,7 +29,7 @@ export default function Event(props) {
     };
 
     return (
-        <Card variant="outlined"className={classes.root}>
+        <Card variant="outlined" className={classes.root}>
             <img alt="event" src={placeholder} className={classes.img}/>
             <CardContent>
                 <Grid container spacing={3}>
