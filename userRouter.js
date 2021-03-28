@@ -178,10 +178,13 @@ router.get("/", auth, async (req, res) => {
 });
 
 router.post("/checkin", async (req, res) => {
+	console.log("printing out req.body");
 	console.log(req.body);
 
-	const user = await User.findById(req.body.user.id);
-	user.events.push("hi");
+	const user = await User.findById(req.body.user.user.id);
+	user.update(user.events.push(req.body.event.title));
+	const saveUser = await user.save();
+	
 	console.log(user)
 });
 
