@@ -10,6 +10,7 @@ import Events from './events/Events';
 import MyForm from './contact/contact.js'
 import NonUserNavBar from "./NonUserNavBar.js"
 import FullScreenEvent from "./events/event/FullScreenEvent.js"
+import UserProfile from "./user/UserProfile.js"
 
 function App() {
   const [user, setUser] = useState({
@@ -58,7 +59,9 @@ function App() {
               <Route path='/register' component={Register} />
               <Route path='/contact' component={MyForm} />
               <Route path='/eventDetail' component={FullScreenEvent} />
+              <Route path='/profile' component={UserProfile} />
               <Route path='/' component={Events} />
+
 
               <Route path='/'>
                 <Redirect to='/' />

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import UserContext from "./context/userContext.js";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import { 
     Grid,
@@ -24,6 +25,12 @@ export default function NonUserNavBar() {
     const login = () => history.push("/login");
     const event = () => history.push("/events");
     const contact = () => history.push("/contact");
+
+    const profile = (user) => history.push({
+        pathname: "/profile", 
+        state: user
+    });
+
     const logout = () => {
         setUser({
             token: undefined,
@@ -46,15 +53,20 @@ export default function NonUserNavBar() {
 
             { user.user ? 
                 (
-                    <Grid item key={"Log Out"}>
-                        <Button className={classes.navLink} onClick={logout}>Log out</Button>
-                    </Grid>
+                    <>
+                        <Grid item key={"Log Out"}>
+                            <Button className={classes.navLink} onClick={logout}>Log out</Button>
+                        </Grid>
+                        <Grid item key={"User"}>
+                            <Button className={classes.navLink} onClick={ () => profile(user)}><AccountCircleIcon /> {user.user.userName}</Button>
+                        </Grid>
+                    </>
                 ) : (
                      <>
                         <Grid item key={"Log In"}>
                             <Button onClick={login} className={classes.navLink}>Log In</Button>
                         </Grid>
-                        <Grid item key={"Log In"}>
+                        <Grid item key={"Register"}>
                             <Button onClick={register} className={classes.navLink}>Register</Button>
                         </Grid>
                      </>
