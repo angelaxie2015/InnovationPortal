@@ -10,3 +10,13 @@
 	margin: 3% auto;
 	width: 60%;
 }
+
+/* Popup */
+.popup {
+	background-color: #DADADA;
+	background-color: red;
+	position: fixed;
+	left: 50%;
+
+	margin: 2% auto;
+}
