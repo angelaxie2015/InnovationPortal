@@ -178,16 +178,9 @@ router.get("/", auth, async (req, res) => {
 });
 
 router.post("/checkin", async (req, res) => {
-	console.log("printing out req.body");
-	console.log(req.body);
-
 	const user = await User.findById(req.body.user.user.id);
 
-	console.log("fingind event");
-	
-
 	const eventExist = await User.findOne({_id: req.body.user.user.id, events: req.body.event} );
-	console.log(eventExist);
 
 	if(eventExist){
 		console.log("event already exist");
@@ -199,7 +192,6 @@ router.post("/checkin", async (req, res) => {
 		return res.json(true);
 	}
 	
-	console.log(user);
 	res.json(false);
 });
 

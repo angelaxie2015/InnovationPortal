@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../logo.png';
 import SearchBar from '../SearchBar';
-import NonUserNavBar from '../NonUserNavBar';
 import EventsGallery from './EventsGallery';
 import { Grid, Button, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -56,7 +55,7 @@ export default function Events(props) {
         <div className={classes.root}>
             <Grid container>
                 <Grid item>
-                    <img src={logo} height={100} className={classes.logo}/>
+                    <img alt="event" src={logo} height={100} className={classes.logo}/>
                 </Grid>
                 <Grid item xs>
                     <Grid container item alignItems="center">
