@@ -53,5 +53,31 @@ router.post("/passcode", async (req, res) => {
 	}
 });
 
+//add attendee
+router.post("/attend", async (req, res) => {
+	try{
+		console.log("in /attend");
+		console.log(req.body);
+		//1. find event in the database
+		const event = await Event.findOne({title: req.body.event.title});
+		console.log("event is");
+		console.log(event);
+					
+		if(event){
+			event.update(event.attendee.push(req.body.user));
+			const saveEvent = await event.save();
+		}
+	
+
+		return res.json(false);
+	}catch(error){
+		console.log(error.message);
+		res.status(500).send();
+		
+	}
+
+});
+
+
 
 export default router;
