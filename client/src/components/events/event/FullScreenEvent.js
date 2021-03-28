@@ -29,22 +29,6 @@ const useStyles = makeStyles({
     }
 });
 
-const checkIn = async (event, user) => {
-    console.log("checking in");
-    console.log(user);
-
-    const checkIn = await Axios.post("http://localhost:8001/users/checkin", user)
-                                    .catch((error) => {
-                                        console.log(error.message);
-                                        console.log(error.response.data);  
-                                         console.log(error.response.status);  
-                                         console.log(error.response.headers);
-                                    });
-
-
-    
-
-}
 
 
 export default function FullEvent(props) {
@@ -54,6 +38,24 @@ export default function FullEvent(props) {
     const event = location.state;
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
+
+    const checkIn = async () => {
+        console.log("checking in");
+
+        console.log("finished setting up user");
+
+        console.log(user);
+
+        const checkIn = await Axios.post("http://localhost:8001/users/checkin", {user, event})
+                                        .catch((error) => {
+                                            console.log(error.message);
+                                            console.log(error.response.data);  
+                                             console.log(error.response.status);  
+                                             console.log(error.response.headers);
+                                        });
+    }
+
+    
 
     return (
         <div className="fullevent">
