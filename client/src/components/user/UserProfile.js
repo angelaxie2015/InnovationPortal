@@ -51,7 +51,7 @@ export default function UserProfile(props) {
     var listItems = [];
 
     if(eventsAttended.length !== 0)
-        listItems = eventsAttended.eventsAttended.map((event) => <li key={event.id} >{event.title}   {event.date}</li>);
+        listItems = eventsAttended.eventsAttended.map((event) => <li key={event.title} >{event.title}   {event.date}</li>);
 
     return (
        <div className="profile">

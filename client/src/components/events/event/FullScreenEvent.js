@@ -116,7 +116,7 @@ export default function FullEvent(props) {
     var listItems = [];
 
     if(attendee.length !== 0)
-        listItems = attendee.attendee.map((att) => <li key={att.id} >{att.name} {att.userName} </li>);
+        listItems = attendee.attendee.map((att) => <li key="{att.name}" >{att.name} {att.userName} </li>);
 
     return (
         <div className="fullevent">
