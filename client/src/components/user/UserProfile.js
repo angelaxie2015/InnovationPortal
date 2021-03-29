@@ -42,10 +42,8 @@ export default function UserProfile(props) {
 
         setEventsAttended({
             eventsAttended: eventList.data.events
-        })
+        });
 
-//        eventsAttended = eventList.data.events;
-        //console.log(eventsAttended);
     }
 
     console.log(eventsAttended);
