@@ -10,7 +10,7 @@ router.post("/register", async (req, res) => {
 	try{
 		const {email, pass, checkPassword, userName} = req.body;
 
-		const role = "ambassador";
+		const role = "normal";
 
 		//validating all fields
 		if(!email || !pass || !checkPassword || !userName){
@@ -51,6 +51,7 @@ router.post("/register", async (req, res) => {
 		
 		const saveUser = await newUser.save();
 
+		return res.json({msg: "registered"});
 
 	}catch(err){
 		console.log(err);
@@ -145,6 +146,7 @@ router.delete("/delete", auth, async (req, res) => {
 
 //checking if a user is logged in
 router.post("/checkToken", async (req, res) => {
+	console.log("in /checkToken post"); 
 	try{
 		const token = req.header("x-auth-token");
 		if(!token)
@@ -169,6 +171,8 @@ router.post("/checkToken", async (req, res) => {
 //find the user who's currently logged in
 router.get("/", auth, async (req, res) => {
 	const user = await User.findById(res.user);
+	console.log("get / method, user is + ");
+	console.log(user);
 	res.json({ //if user is found, display its name and email
 		email: user.email,
 		id: user._id,
