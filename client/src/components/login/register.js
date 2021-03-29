@@ -34,12 +34,12 @@ export default function Register(){
          								console.log(error.response.headers);
 									});
 
-		localStorage.setItem("auth-token", loginRes.data.token);
-
 		setUser({
 			token: loginRes.data.token,
 			user: loginRes.data.user 
 		});
+
+		localStorage.setItem("auth-token", loginRes.data.token);
 
 		//redirecting
 		history.push("/");

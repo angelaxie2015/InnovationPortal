@@ -84,5 +84,26 @@ router.post("/attend", async (req, res) => {
 });
 
 
+//get attendee
+router.post("/getAttendee", async (req, res) => {
+	try{
+		console.log("/getAttendee req boday");
+		console.log(req.body);
+
+
+		//1. find event in the database
+		const event = await Event.findOne({title: req.body.title});
+
+		console.log("event attendee is");
+		console.log(event.attendee);
+
+		return res.json(event.attendee);
+	}catch(error){
+		console.log(error.message);
+		res.status(500).send();
+		
+	}
+});
+
 
 export default router;

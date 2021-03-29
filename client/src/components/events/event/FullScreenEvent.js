@@ -45,9 +45,6 @@ export default function FullEvent(props) {
     const event = location.state;
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
-    
-    console.log("full screen event user is");
-    console.log(user);
 
     const [ buttonPopup, setButtonPopup ] = useState(false);
     const [passcode, setPasscode] = useState("");
@@ -57,6 +54,7 @@ export default function FullEvent(props) {
         
     }
 
+    const [attendee, setAttendee] = useState([]);
 
     const checkIn = async () => {
         //check if the passcode is correct
@@ -91,7 +89,34 @@ export default function FullEvent(props) {
         }
     }
 
-    
+    //list all the attendee
+    const list = async () => {
+        console.log("in full screen event is");
+        console.log(event);
+
+        const attendeeRes = await Axios.post("http://localhost:8001/events/getAttendee", event)
+                                            .catch((error) => {
+                                                console.log(error.message);
+                                                console.log(error.response.data);  
+                                                console.log(error.response.status);  
+                                                console.log(error.response.headers);
+                                        });
+
+
+        console.log("in list in full screen event, attendee:");
+        console.log(attendeeRes.data);
+
+        setAttendee({
+            attendee: attendeeRes.data
+        });
+
+    }
+    console.log("Attkajflkajsdlkfj");
+    console.log(attendee);
+    var listItems = [];
+
+    if(attendee.length !== 0)
+        listItems = attendee.attendee.map((att) => <li key={att.id} >{att.name} {att.userName} </li>);
 
     return (
         <div className="fullevent">
@@ -134,9 +159,11 @@ export default function FullEvent(props) {
                         { user.user.role === "admin" ?
                             <>
                                 <h1>Admin</h1> 
-                                <Button variant="contained" startIcon={<EqualizerIcon />}>
+                                <Button onClick={list} variant="contained" startIcon={<EqualizerIcon />}>
                                     Statistics 
                                 </Button><br /><br />
+
+                                <ul>{listItems}</ul>
 
                                 <Button
                                     variant="contained"
@@ -186,6 +213,7 @@ export default function FullEvent(props) {
                     }  
                 </Grid>    
             </Grid>
+
 
             
         </div>
