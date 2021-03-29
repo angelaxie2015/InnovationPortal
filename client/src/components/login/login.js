@@ -30,7 +30,6 @@ export default function Login(){
 		});
 
 
-
 		localStorage.setItem("auth-token", loginRes.data.token);
 
 		//redirecting

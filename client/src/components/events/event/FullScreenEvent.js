@@ -130,31 +130,38 @@ export default function FullEvent(props) {
                         <Button variant="contained" onClick={() => setButtonPopup(true)} color="primary" startIcon={<CheckIcon />}>
                             Check In
                         </Button ><br /><br />
-                        <Button variant="contained" startIcon={<EditIcon />}>
-                            Edit
-                        </Button><br /><br />
+
                         { user.user.role === "admin" ?
                             <>
                                 <h1>Admin</h1> 
                                 <Button variant="contained" startIcon={<EqualizerIcon />}>
                                     Statistics 
                                 </Button><br /><br />
+
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    startIcon={<DeleteIcon />}
+                                >
+                                   Delete
+                                </Button>
                                 
                             </> : 
 
                             <>
-                                <h1>Ambassador</h1>
+                                { user.user.role === "ambassador" && 
+                                    <>
+                                        <h1>Ambassador</h1>
+                                        <Button variant="contained" startIcon={<EditIcon />}>
+                                            Edit
+                                        </Button><br /><br />
+                                    </>
+                                }
                             </>
 
                         } 
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                            startIcon={<DeleteIcon />}
-                        >
-                           Delete
-                        </Button>
+                        
 
                         <PopUp trigger={buttonPopup} setTrigger={setButtonPopup}>
                                <div className="input-box">

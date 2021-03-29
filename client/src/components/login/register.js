@@ -15,6 +15,8 @@ export default function Register(){
 
 	const submit = async (e) => {
 		e.preventDefault();
+		console.log("clicked on submit in register");
+
 		const newUser = {email, pass, checkPassword, userName};
 		await Axios.post("http://localhost:8001/users/register", newUser).catch((error) => {
 										console.log(error.message);
@@ -31,13 +33,13 @@ export default function Register(){
          								console.log(error.response.status);  
          								console.log(error.response.headers);
 									});
-		
+
+		localStorage.setItem("auth-token", loginRes.data.token);
+
 		setUser({
 			token: loginRes.data.token,
 			user: loginRes.data.user 
 		});
-
-		localStorage.setItem("auth-token", loginRes.data.token);
 
 		//redirecting
 		history.push("/");
