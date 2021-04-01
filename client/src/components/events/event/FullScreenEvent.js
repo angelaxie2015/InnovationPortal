@@ -113,6 +113,7 @@ export default function FullEvent(props) {
     }
     console.log("Attkajflkajsdlkfj");
     console.log(attendee);
+    
     var listItems = [];
 
     if(attendee.length !== 0)

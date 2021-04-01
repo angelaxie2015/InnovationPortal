@@ -63,6 +63,7 @@ router.post("/register", async (req, res) => {
 //login
 router.post("/login", async (req, res) => {
 	try{
+
 		const {email, pass} = req.body;
 
 		if(!email || !pass){
@@ -82,11 +83,13 @@ router.post("/login", async (req, res) => {
 
 		//check if the user password is correct 
 		const correctPass = await bcrypt.compare(pass, findUser.password);
+
 		if(!correctPass){
 			return res
 				.status(400)
 				.json({msg: "Incorrect password."});
 		}
+
 
 		const token = jwt.sign({id: findUser._id}, process.env.JWT_CODE);
 
