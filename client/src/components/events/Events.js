@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../logo.png';
 import SearchBar from '../SearchBar';
-import NonUserNavBar from '../NonUserNavBar';
+import NavBar from '../NavBar';
 import EventsGallery from './EventsGallery';
 import { Grid, Button, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
