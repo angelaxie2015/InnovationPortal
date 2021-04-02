@@ -118,7 +118,6 @@ const auth = (req, res, next) => {
 		}
 
 		res.user = acc.id;
-		console.log("here");
 		next();
 
 	}catch(err){
@@ -165,7 +164,6 @@ router.post("/checkToken", async (req, res) => {
 
 //find the user who's currently logged in
 router.get("/", auth, async (req, res) => {
-	console.log("heererere");
 	const user = await User.findById(res.user);
 	res.json({ //if user is found, display its name and email
 		email: user.email,
