@@ -45,7 +45,7 @@ export default function Event(props) {
                     </Grid>
                     <Grid item xs={6}>
                         <Typography align="right" variant="body1" component="p">
-                            {event.date.toDateString()}
+                            {(new Date(event.date)).toDateString()}
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>

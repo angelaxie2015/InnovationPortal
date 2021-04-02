@@ -3,7 +3,9 @@ import Event from "./eventdb.js"
 
 const router = express.Router();
 
-//post an event  events/
+// @route POST /events
+// @desc Create an Event
+// @access public
 router.post("/", async (req, res) => {
 	try{
 		const {title, time, description, image} = req.body;
@@ -28,6 +30,15 @@ router.post("/", async (req, res) => {
 		res.status(500).send();
 		
 	}
+});
+
+// @route get /events
+// @desc get All Events
+// @access Public
+router.get("/", (req, res) => {
+	Event.find()
+		.sort({ date: -1 })
+		.then(events => res.json(events));
 });
 
 export default router;

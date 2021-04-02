@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 
 
 export default function FullEvent(props) {
-    //const { event } = props;
     const location = useLocation();
     console.log("location state is " + location.state.title);
     const event = location.state;
@@ -43,7 +42,7 @@ export default function FullEvent(props) {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="body1" component="p">
-                                {event.date.toDateString()}
+                                {(new Date(event.date)).toDateString()}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
