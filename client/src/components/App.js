@@ -10,6 +10,8 @@ import Events from './events/Events';
 import MyForm from './contact/contact.js'
 import NavBar from "./NavBar.js"
 import FullScreenEvent from "./events/event/FullScreenEvent.js"
+import Dashboard from './dashboard/Dashboard';
+import AddEvent from './addevent/AddEvent';
 
 function App() {
   const [user, setUser] = useState({
@@ -58,6 +60,8 @@ function App() {
               <Route path='/register' component={Register} />
               <Route path='/contact' component={MyForm} />
               <Route path='/eventDetail' component={FullScreenEvent} />
+              <Route path='/dashboard' component={Dashboard}/>
+              <Route path='/addEvent' component={AddEvent}/>
               <Route path='/' component={Events} />
 
               <Route path='/'>

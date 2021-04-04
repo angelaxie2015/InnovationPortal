@@ -50,7 +50,7 @@ export default function Event(props) {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body2" component="p">
-                            {event.desc}
+                            {event.description}
                         </Typography>
                     </Grid>
                 </Grid>

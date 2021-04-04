@@ -8,16 +8,16 @@ const router = express.Router();
 // @access public
 router.post("/", async (req, res) => {
 	try{
-		const {title, time, description, image} = req.body;
+		const { title, date, description, image } = req.body;
 
-		if(!title || !time || !description){
+		if(!title || !date || !description){
 			return res
 					.status(400)
 					.json({msg: "Enter all fields"});
 		}
 
 		const newEvent = new Event({
-			title, time, description, image
+			title, date, description, image
 		});
 
 		const saveEvent = await newEvent.save();
