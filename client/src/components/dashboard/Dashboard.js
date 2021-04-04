@@ -10,18 +10,27 @@ export default function Dashboard(props) {
     const history = useHistory();
     const addEvent = () => history.push("/addEvent");
 
-    return (
-        <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-            style={{ minHeight: '100vh' }}
-        >
-            <Grid item xs={3}>
-                <Button onClick={addEvent} >Add Event</Button>
-            </Grid>
-        </Grid> 
-    );
+    if (user.user) {
+        return (
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+                <Grid item xs={3}>
+                    <Button onClick={addEvent} >Add Event</Button>
+                </Grid>
+            </Grid> 
+        );
+    } else {
+        return(
+            <div style={{margin: 'auto', textAlign: "center"}}>
+                Error: User not logged in!
+            </div>
+        );
+    }
+
 };
