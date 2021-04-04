@@ -33,7 +33,7 @@ export default function NavBar() {
             
             { user.user ? 
                 (
-                    <Grid item key={"Dashboardt"}>
+                    <Grid item key={"Dashboard"}>
                         <Button onClick={dashboard} className={classes.navLink}>{user.user.userName}</Button>
                     </Grid>
                 ) : (
@@ -41,7 +41,7 @@ export default function NavBar() {
                         <Grid item key={"Log In"}>
                             <Button onClick={login} className={classes.navLink}>Log In</Button>
                         </Grid>
-                        <Grid item key={"Log In"}>
+                        <Grid item key={"Register"}>
                             <Button onClick={register} className={classes.navLink}>Register</Button>
                         </Grid>
                      </>
