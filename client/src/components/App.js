@@ -9,7 +9,7 @@ import Axios from "axios"
 import Events from './events/Events';
 import MyForm from './contact/contact.js'
 import NonUserNavBar from "./NonUserNavBar.js"
-import FullScreenEvent from "./events/event/FullScreenEvent.js"
+import EventDetails from "./events/EventDetails.js"
 
 function App() {
   const [user, setUser] = useState({
@@ -57,7 +57,7 @@ function App() {
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route path='/contact' component={MyForm} />
-              <Route path='/eventDetail' component={FullScreenEvent} />
+              <Route path='/eventDetail' component={EventDetails} />
               <Route path='/' component={Events} />
 
               <Route path='/'>

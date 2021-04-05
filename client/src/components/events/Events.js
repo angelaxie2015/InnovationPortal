@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import logo from '../../logo.png';
 import SearchBar from '../SearchBar';
-import NonUserNavBar from '../NonUserNavBar';
 import EventsGallery from './EventsGallery';
 import { Grid, Button, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        minWidth: "100%",
+        width: "100%",
         minHeight: "100vh",
         overflow: 'hidden',
     },
@@ -16,18 +15,16 @@ const useStyles = makeStyles({
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,
-    },
-    searchBar: {
-        marginTop: 20,
-        marginRight: 30,
+        marginBottom: 30
     },
     button: {
         marginRight: 30,
-        marginTop: 20,
+        marginLeft: 30,
     },
     eventsGalleryContainer: {
-        marginTop: 30,
         marginBottom: 50,
+        marginLeft: 30,
+        height: "100%",
         overflow: 'hidden',
     }
 });
@@ -54,8 +51,9 @@ export default function Events(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container>
-                <Grid item>
+            <Grid>
+            <Grid container alignItems="center">
+                <Grid>
                     <img src={logo} height={100} className={classes.logo}/>
                 </Grid>
                 <Grid item xs>
@@ -70,9 +68,10 @@ export default function Events(props) {
                         </Hidden>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} className={classes.eventsGalleryContainer}>
-                    <EventsGallery events={events} />
-                </Grid>
+            </Grid>
+            <Grid item xs={12} className={classes.eventsGalleryContainer}>
+                <EventsGallery events={events} />
+            </Grid>
             </Grid>
         </div>
     );

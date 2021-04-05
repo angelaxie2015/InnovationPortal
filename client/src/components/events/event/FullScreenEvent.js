@@ -3,13 +3,11 @@ import { useLocation } from "react-router-dom";
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     root: {
       width: "100%",
       minheight: "100vh",
-      backgroundColor: blue
     },
     img: {
         width: "100%",
