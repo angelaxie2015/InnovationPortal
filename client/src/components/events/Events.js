@@ -38,7 +38,8 @@ export default function Events(props) {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {    
-        Axios.get("http://localhost:8001/events/").then(function (res) {
+        Axios.get("http://localhost:8001/events/")
+            .then(function (res) {
             setEvents(res.data);
             console.log(res.data);
         });

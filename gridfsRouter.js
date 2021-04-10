@@ -51,20 +51,21 @@ router.post("/", upload.single("file"), (req, res) => {
     res.json({ filename: req.file.filename });
 });
 
-router.get("/image/:filename", (req, res) => {
+router.get("/:filename", (req, res) => {
+    // console.log('id', req.params.id)
     const file = gfs
-    .find({
-      filename: req.params.filename
-    })
-    .toArray((err, files) => {
-      if (!files || files.length === 0) {
-        return res.status(404).json({
-          err: "no files exist"
-        });
-      }
-      gfs.openDownloadStreamByName(req.params.filename).pipe(res);
-    });
-});
+      .find({
+        filename: req.params.filename
+      })
+      .toArray((err, files) => {
+        if (!files || files.length === 0) {
+          return res.status(404).json({
+            err: "no files exist"
+          });
+        }
+        gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+      });
+  });
 
 
 

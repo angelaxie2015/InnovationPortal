@@ -1,5 +1,6 @@
-import React from 'react';
+import { React, useState, useEffect} from 'react';
 import { useLocation } from "react-router-dom";
+import Axios from "axios"
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,12 +28,24 @@ export default function FullEvent(props) {
     const location = useLocation();
     console.log("location state is " + location.state.title);
     const event = location.state;
+
+    const [ image, setImage ] = useState(placeholder);
+
+    useEffect(() => {    
+        if (event.filename) {
+            Axios.get(`http://localhost:8001/uploads/${event.filename}`)
+                .then(res => {
+                    setImage(res.config.url);
+                });
+        }
+    }, []);
+
     const classes = useStyles();
 
     return (
         <Container>
             <Card variant="outlined"className={classes.root}>
-                <img src={placeholder} className={classes.img}/>
+                <img src={image} className={classes.img}/>
                 <CardContent>
                     <Grid className={classes.content}>
                         <Grid item xs={12}>
