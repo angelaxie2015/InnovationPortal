@@ -1,4 +1,4 @@
-import { React, useContext, useState, useRef } from 'react'
+import { React, useContext, useState } from 'react'
 import { useHistory } from "react-router-dom";
 import { 
     Grid, 
@@ -43,9 +43,12 @@ export default function AddEvent(props) {
     const [ description, setDescription ] = useState("");
     const [ password, setPassword ] = useState(""); 
     const [ image, setImage ] = useState(AddIcon);
+    const [ imageFile, setImageFile ] = useState(null);
 
     const onFileUpload = e => {
         const fileReader = new FileReader();
+
+        setImageFile(e.target.files[0]);
 
         fileReader.readAsDataURL(e.target.files[0]);
         fileReader.onload = (e) => {
@@ -54,6 +57,16 @@ export default function AddEvent(props) {
     };
 
     const onSubmit = () => {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+
+        Axios.post("http://localhost:8001/uploads", formData)
+        .catch((error) => {
+            console.log(error.message);
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        })
 
         // const newEvent = {
         //     title, date, description, password
@@ -69,7 +82,7 @@ export default function AddEvent(props) {
         // .then(history.push("/events"));
     };
     
-    if (user.user) {
+    if (true) {
         return (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <div className={classes.container}>

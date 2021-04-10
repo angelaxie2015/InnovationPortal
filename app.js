@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import eventRouter from "./eventRouter.js"
 import userRouter from "./userRouter.js"
+import gridfsRouter from "./gridfsRouter.js"
 
 const app = express();
 const PORT = process.env.PORT || 8001;
@@ -17,3 +18,4 @@ app.listen(PORT, () => console.log(`The server started on port: ${ PORT }`));
 
 app.use("/events", eventRouter);
 app.use("/users", userRouter);
+app.use("/uploads", gridfsRouter);
