@@ -42,6 +42,16 @@ export default function AddEvent(props) {
     const [ date, setDate ] = useState(Date.now());
     const [ description, setDescription ] = useState("");
     const [ password, setPassword ] = useState(""); 
+    const [ image, setImage ] = useState(AddIcon);
+
+    const onFileUpload = e => {
+        const fileReader = new FileReader();
+
+        fileReader.readAsDataURL(e.target.files[0]);
+        fileReader.onload = (e) => {
+            setImage(e.target.result)
+        };
+    };
 
     const onSubmit = () => {
 
@@ -69,26 +79,29 @@ export default function AddEvent(props) {
                                 <Grid item xs={12}>
                                     <Paper
                                         style={{
-                                            height: "30vh",
                                             width: "100%",
+                                            height: "30vh",
                                         }}
                                         variant="outlined"
-                                        component="label"
                                     >
                                         <input
                                             style={{ display: "none" }}
                                             id="contained-button-file"
                                             type="file"
                                             accept="image/*"
+                                            onChange={onFileUpload}
                                         />
                                         <label htmlFor="contained-button-file">
-                                            <Button variant="contained" color="primary" component="span">
-                                                Upload
-                                            </Button>
+                                            <img 
+                                                src={image} 
+                                                style={{
+                                                    objectFit: "contain",
+                                                    width: "100%",
+                                                    height: "100%"
+                                                }}
+                                            />
                                         </label>
                                     </Paper>
-
-  
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
