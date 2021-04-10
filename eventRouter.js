@@ -1,13 +1,14 @@
 import express from "express"
-import Event from "./eventdb.js"
+import connectionFactory from "./db.js"
 
 const router = express.Router();
+const Event = connectionFactory().model("Event")
 
 // @route POST /events
 // @desc Create an Event
 // @access public
 router.post("/", async (req, res) => {
-	try{
+	try {
 		const { title, date, description, image } = req.body;
 
 		if(!title || !date || !description){

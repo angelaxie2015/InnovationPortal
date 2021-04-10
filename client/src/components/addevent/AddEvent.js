@@ -1,4 +1,4 @@
-import { React, useContext, useState } from 'react'
+import { React, useContext, useState, useRef } from 'react'
 import { useHistory } from "react-router-dom";
 import { 
     Grid, 
@@ -15,6 +15,7 @@ import {
 import UserContext from "../context/userContext.js";
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios";
+import AddIcon from "../../addicon.png"
 
 const useStyles = makeStyles({
     container: {
@@ -22,34 +23,40 @@ const useStyles = makeStyles({
         margin: 'auto', 
         maxWidth: 600, 
         backgroundColor: '#dadada', 
-        marginTop: '10%', 
+        marginTop: 50, 
         borderRadius: '15px'
     },
+    img: {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+    }
 });
 
 export default function AddEvent(props) {
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
     const history = useHistory();
-
+  
     const [ title, setTitle ] = useState("");
     const [ date, setDate ] = useState(Date.now());
     const [ description, setDescription ] = useState("");
     const [ password, setPassword ] = useState(""); 
 
     const onSubmit = () => {
-        const newEvent = {
-            title, date, description, password
-        };
 
-        Axios.post("http://localhost:8001/events", newEvent)
-        .catch((error) => {
-            console.log(error.message);
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-        })
-        .then(history.push("/events"));
+        // const newEvent = {
+        //     title, date, description, password
+        // };
+
+        // Axios.post("http://localhost:8001/events", newEvent)
+        // .catch((error) => {
+        //     console.log(error.message);
+        //     console.log(error.response.data);
+        //     console.log(error.response.status);
+        //     console.log(error.response.headers);
+        // })
+        // .then(history.push("/events"));
     };
     
     if (user.user) {
@@ -59,6 +66,30 @@ export default function AddEvent(props) {
                     <form onSubmit={onSubmit} noValidate>
                         <Paper style={{ padding: 16 }}>
                             <Grid container alignItems="flex-start" spacing={2}>
+                                <Grid item xs={12}>
+                                    <Paper
+                                        style={{
+                                            height: "30vh",
+                                            width: "100%",
+                                        }}
+                                        variant="outlined"
+                                        component="label"
+                                    >
+                                        <input
+                                            style={{ display: "none" }}
+                                            id="contained-button-file"
+                                            type="file"
+                                            accept="image/*"
+                                        />
+                                        <label htmlFor="contained-button-file">
+                                            <Button variant="contained" color="primary" component="span">
+                                                Upload
+                                            </Button>
+                                        </label>
+                                    </Paper>
+
+  
+                                </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         id="event-title"
@@ -121,8 +152,8 @@ export default function AddEvent(props) {
                                     />
                                 </Grid>
                                 <Grid item>
-                                    <Button 
-                                        variant="contained" 
+                                    <Button
+                                        variant="contained"
                                         style={{ backgroundColor: '#62d98a', color: 'black' }}
                                         onClick={onSubmit}>
                                         Publish
@@ -135,8 +166,8 @@ export default function AddEvent(props) {
             </MuiPickersUtilsProvider>
         );
     } else {
-        return(
-            <div style={{margin: 'auto', textAlign: "center"}}>
+        return (
+            <div style={{ margin: 'auto', textAlign: "center" }}>
                 Error: User not logged in!
             </div>
         );

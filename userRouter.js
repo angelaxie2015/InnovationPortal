@@ -1,9 +1,10 @@
 import express from "express"
 import bcrypt from "bcryptjs" //for hashing password
 import jwt from "jsonwebtoken"
-import User from "./userdb.js"
+import connectionFactory from "./db.js"
 
 const router = express.Router();
+const User = connectionFactory().model("User")
 
 //register
 router.post("/register", async (req, res) => {
