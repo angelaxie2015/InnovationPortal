@@ -9,7 +9,7 @@ const Event = connectionFactory().model("Event")
 // @access public
 router.post("/", async (req, res) => {
 	try {
-		const { title, date, description, image } = req.body;
+		const { title, date, description, filename } = req.body;
 
 		if(!title || !date || !description){
 			return res
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 		}
 
 		const newEvent = new Event({
-			title, date, description, image
+			title, date, description, filename
 		});
 
 		const saveEvent = await newEvent.save();

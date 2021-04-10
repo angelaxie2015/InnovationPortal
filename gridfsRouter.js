@@ -20,7 +20,6 @@ conn.once("open", () => {
 });
 
 dotenv.config();
-// DB
 const mongoURI = process.env.MONGODB_CONNECTION;
 
 // Storage
@@ -28,7 +27,7 @@ const storage = new GridFsStorage({
     url: mongoURI,
     file: (req, file) => {
         return new Promise((resolve, reject) => {
-            console.log("uploading file")
+            // encrypt so file names don't matter when uploading
             crypto.randomBytes(16, (err, buf) => {
                 if (err) {
                     return reject(err);
@@ -49,7 +48,7 @@ const upload = multer({
 });
 
 router.post("/", upload.single("file"), (req, res) => {
-    console.log("in post")
+    res.json({ filename: req.file.filename });
 });
 
 router.get("/image/:filename", (req, res) => {

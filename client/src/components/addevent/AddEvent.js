@@ -56,33 +56,43 @@ export default function AddEvent(props) {
         };
     };
 
-    const onSubmit = () => {
-        const formData = new FormData();
-        formData.append("file", imageFile);
+    const onSubmit = async () => {
 
-        Axios.post("http://localhost:8001/uploads", formData)
-        .catch((error) => {
-            console.log(error.message);
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-        })
+        // the file name generatedfrom multer-gridfs-storage
+        let filename = null;
 
-        // const newEvent = {
-        //     title, date, description, password
-        // };
+        if (imageFile != null) {
+            // need to store image in form data because multer wants it that way
+            const formData = new FormData();
+            formData.append("file", imageFile);
 
-        // Axios.post("http://localhost:8001/events", newEvent)
-        // .catch((error) => {
-        //     console.log(error.message);
-        //     console.log(error.response.data);
-        //     console.log(error.response.status);
-        //     console.log(error.response.headers);
-        // })
-        // .then(history.push("/events"));
+            const imageFileRes = await Axios.post("http://localhost:8001/uploads", formData)
+                .catch((error) => {
+                    console.log(error.message);
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                })
+            
+            filename = imageFileRes.data.filename;
+        }
+
+        const newEvent = {
+            title, date, description, password, filename
+        };
+
+        Axios.post("http://localhost:8001/events", newEvent)
+            .catch((error) => {
+                console.log(error.message);
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            })
+
+        history.push("/events")
     };
     
-    if (true) {
+    if (user.user) {
         return (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <div className={classes.container}>
