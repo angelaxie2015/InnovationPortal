@@ -3,11 +3,13 @@ import ReactDOM from "react-dom";
 import { Form, Field } from "react-final-form";
 import { TextField, Checkbox, Radio, Select } from "final-form-material-ui";
 import { Typography, Paper, Grid, Button } from "@material-ui/core";
+import { useForm, ValidationError } from "@formspree/react";
 
 const onSubmit = async (values) => {
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
+  // useForm("xjvjvzyz");
+  // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // await sleep(300);
+  // window.alert(JSON.stringify(values, 0, 2));
 };
 
 const reset = (values) => {
@@ -38,6 +40,33 @@ const validate = (values) => {
 };
 
 function MyForm() {
+  const [state, handleSubmit] = useForm("xjvjvzyz");
+  if (state.succeeded) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          margin: "auto",
+        }}
+      >
+        <a href="/events">
+          <img
+            style={{
+              margin: 0,
+            }}
+            className="login-image"
+            src="../../ia_logo.png"
+            alt="ia-logo"
+          ></img>
+        </a>
+        <Typography variant="h4" align="center" component="h1" gutterBottom>
+          Form submitted sucessfully, an ambassador will reach out to you soon.
+        </Typography>
+      </div>
+    );
+  }
   return (
     <div
       style={{
@@ -73,7 +102,7 @@ function MyForm() {
           Fill out the following fields to get in contact with an ambassador.
         </Typography>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit}
           validate={validate}
           reset={reset}
           render={({ handleSubmit, reset, submitting, pristine, values }) => (
@@ -139,14 +168,13 @@ function MyForm() {
                       variant="contained"
                       color="primary"
                       type="submit"
-                      disabled={submitting}
+                      disabled={state.submitting}
                     >
                       Submit
                     </Button>
                   </Grid>
                 </Grid>
               </Paper>
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
           )}
         />
