@@ -5,6 +5,9 @@ const eventSchema = new mongoose.Schema({
 	date: { type: Date, required: true },
 	description: { type: String, required: true },
 	filename: { type: String, required: false, unique: true },
+	passcode: {type: String},
+	interestedCount: 0,
+	attendee: [],
 
 });
 

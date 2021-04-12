@@ -13,6 +13,7 @@ import FullScreenEvent from "./events/event/FullScreenEvent.js";
 import Dashboard from "./dashboard/Dashboard";
 import AddEvent from "./addevent/AddEvent";
 import faq from "./faqpage/faqpage.js";
+import UserProfile from "./user/UserProfile.js"
 
 function App() {
   const [user, setUser] = useState({
@@ -60,6 +61,7 @@ function App() {
             <Route path="/contact" component={MyForm} />
             <Route path="/eventDetail" component={FullScreenEvent} />
             <Route path="/faqpage" component={faq} />
+            <Route path='/profile' component={UserProfile} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/addEvent" component={AddEvent} />
             <Route path="/" component={Events} />

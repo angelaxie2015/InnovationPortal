@@ -11,6 +11,8 @@ router.post("/register", async (req, res) => {
 	try{
 		const {email, pass, checkPassword, userName} = req.body;
 
+		const role = "normal";
+
 		//validating all fields
 		if(!email || !pass || !checkPassword || !userName){
 			return res
@@ -45,11 +47,12 @@ router.post("/register", async (req, res) => {
 
 		//store to db
 		const newUser = new User({
-			email, password, userName
+			email, password, userName, role
 		});
 		
 		const saveUser = await newUser.save();
 
+		return res.json({msg: "registered"});
 
 	}catch(err){
 		console.log(err);
@@ -61,6 +64,7 @@ router.post("/register", async (req, res) => {
 //login
 router.post("/login", async (req, res) => {
 	try{
+
 		const {email, pass} = req.body;
 
 		if(!email || !pass){
@@ -80,18 +84,22 @@ router.post("/login", async (req, res) => {
 
 		//check if the user password is correct 
 		const correctPass = await bcrypt.compare(pass, findUser.password);
+
 		if(!correctPass){
 			return res
 				.status(400)
 				.json({msg: "Incorrect password."});
 		}
 
+
 		const token = jwt.sign({id: findUser._id}, process.env.JWT_CODE);
+
 		res.json({
 			token, 
 			user:{
 				id: findUser._id,
-				name: findUser.userName
+				name: findUser.userName,
+				role: findUser.role,
 			}
 		});
 
@@ -142,6 +150,7 @@ router.delete("/delete", auth, async (req, res) => {
 
 //checking if a user is logged in
 router.post("/checkToken", async (req, res) => {
+	console.log("in /checkToken post"); 
 	try{
 		const token = req.header("x-auth-token");
 		if(!token)
@@ -166,11 +175,39 @@ router.post("/checkToken", async (req, res) => {
 //find the user who's currently logged in
 router.get("/", auth, async (req, res) => {
 	const user = await User.findById(res.user);
+	console.log("get / method, user is + ");
+	console.log(user);
 	res.json({ //if user is found, display its name and email
 		email: user.email,
 		id: user._id,
-		userName: user.userName
+		userName: user.userName,
+		role: user.role
 	});
+});
+
+router.post("/checkin", async (req, res) => {
+	const user = await User.findById(req.body.user.user.id);
+
+	const eventExist = await User.findOne({_id: req.body.user.user.id, events: req.body.event} );
+
+	if(eventExist){
+		console.log("event already exist");
+	}
+	else{
+		user.update(user.events.push(req.body.event));
+		const saveUser = await user.save();
+	
+		return res.json(true);
+	}
+	
+	res.json(false);
+});
+
+//get a user
+router.post("/getEvents", async (req, res) => {
+	const user = await User.findById(req.body.user.id);
+
+	return res.json(user);
 });
 
 export default router;

@@ -33,6 +33,82 @@ router.post("/", async (req, res) => {
 	}
 });
 
+
+//checking correct passcode
+router.post("/passcode", async (req, res) => {
+	try{
+		//1. find event in the database
+		const event = await Event.findOne({title: req.body.event.title});
+
+		if(event){
+			if(event.passcode === req.body.passcode){
+				return res.json(true);
+			}else
+				return res.json(false);
+		}
+
+		return res.json(false);
+	}catch(error){
+		console.log(error.message);
+		res.status(500).send();
+		
+	}
+});
+
+//add attendee
+router.post("/attend", async (req, res) => {
+	try{
+		//1. find event in the database
+		const event = await Event.findOne({title: req.body.event.title});
+
+		console.log("event is");
+		console.log(event);
+
+		const duplicate = await Event.findOne({title: req.body.event.title, 'attendee.id' : req.body.user.user.id } );
+
+		console.log("printing duplicate");
+		console.log(req.body);
+		console.log(duplicate);
+					
+		if(!duplicate && event){
+			console.log("no duplicates");
+			event.update(event.attendee.push(req.body.user.user));
+			const saveEvent = await event.save();
+		}
+	
+
+		return res.json(false);
+	}catch(error){
+		console.log(error.message);
+		res.status(500).send();
+		
+	}
+
+});
+
+
+//get attendee
+router.post("/getAttendee", async (req, res) => {
+	try{
+		console.log("/getAttendee req boday");
+		console.log(req.body);
+
+
+		//1. find event in the database
+		const event = await Event.findOne({title: req.body.title});
+
+		console.log("event attendee is");
+		console.log(event.attendee);
+
+		return res.json(event.attendee);
+	}catch(error){
+		console.log(error.message);
+		res.status(500).send();
+		
+	}
+});
+
+
 // @route get /events
 // @desc get All Events
 // @access Public
