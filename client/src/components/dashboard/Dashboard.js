@@ -28,8 +28,13 @@ export default function Dashboard(props) {
   const [eventsAttended, setEventsAttended] = useState([]);
   const addEvent = () => history.push("/addEvent");
   const logOut = () => {
-    setUser({ token: undefined, user: undefined });
-    history.push("/events");
+    setUser({
+      token: undefined,
+      user: undefined,
+      role: undefined,
+    });
+    localStorage.setItem("auth-token", undefined);
+    history.push("/");
   };
 
   const list = async () => {
