@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from "react";
-import logo from "../../logo.png";
-import SearchBar from "../SearchBar";
-import NavBar from "../NavBar";
-import EventsGallery from "./EventsGallery";
-import { Grid, Button, Hidden } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from 'react';
+import logo from '../../logo.png';
+import SearchBar from '../SearchBar';
+import EventsGallery from './EventsGallery';
+import { Grid, Button, Hidden } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios";
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: "100%",
-    minHeight: "100vh",
-    overflow: "hidden",
-  },
-  logo: {
-    marginLeft: 30,
-    marginRight: 30,
-    marginTop: 20,
-  },
-  searchBar: {
-    marginTop: 20,
-    marginRight: 30,
-  },
-  button: {
-    marginRight: 30,
-    marginTop: 20,
-  },
-  eventsGalleryContainer: {
-    marginTop: 30,
-    marginBottom: 50,
-    overflow: "hidden",
-  },
+    root: {
+        width: "100%",
+        minHeight: "100vh",
+        overflow: 'hidden',
+    },
+    logo: {
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        marginBottom: 30
+    },
+    button: {
+        marginRight: 30,
+        marginLeft: 30,
+    },
+    eventsGalleryContainer: {
+        marginBottom: 50,
+        marginLeft: 30,
+        height: "100%",
+        overflow: 'hidden',
+    }
 });
 
 export default function Events(props) {

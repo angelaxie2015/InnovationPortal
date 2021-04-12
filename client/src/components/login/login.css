@@ -1,4 +1,4 @@
-#log-in {
+/* #log-in {
 	background-color: #F8F5EF;
 	text-align: center;
 }
@@ -11,10 +11,10 @@
 .auth{
 	margin: 0 0;
 	padding-bottom: 5%;
-}
+} */
 
 /* Register Form */
-.direct-to-reg{
+/* .direct-to-reg{
 	position: relative;
 	top: 27px;
 	margin-top: 10%;
@@ -24,9 +24,9 @@
 
 .direct-to-reg:hover{
 	color: #010101;
-}
+} */
 
-.register-form{
+/* .register-form{
 	width: 40%;
 	margin: 0 auto;
 	padding: 5% 3% 8%;
@@ -61,4 +61,14 @@
 	border: none;
 	border-radius: 10px;
 	background-color: #3AD86F;
+} */
+
+.login-image{
+	height: 200px;
+}
+
+.login-register-body {
+	height: 90vh;
+	width: 50vh;
+	margin: auto;
 }

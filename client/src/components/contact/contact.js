@@ -1,8 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Form, Field } from "react-final-form";
-import { TextField, Checkbox, Radio, Select } from "final-form-material-ui";
-import { Typography, Paper, Grid, Button } from "@material-ui/core";
+import { TextField } from "final-form-material-ui";
+import {
+  Typography,
+  Paper,
+  Grid,
+  Button,
+  InputAdornment,
+  Container,
+} from "@material-ui/core";
+import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
+import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import { useForm, ValidationError } from "@formspree/react";
 
 const onSubmit = async (values) => {
@@ -68,33 +77,14 @@ function MyForm() {
     );
   }
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        margin: "auto",
-      }}
+    <Grid
+      container
+      xs={12}
+      alignContent="center"
+      justify="center"
+      style={{ width: "50vh", margin: "auto" }}
     >
-      <a href="/events">
-        <img
-          style={{
-            margin: 0,
-          }}
-          className="login-image"
-          src="../../ia_logo.png"
-          alt="ia-logo"
-        ></img>
-      </a>
-      <div
-        style={{
-          padding: 16,
-          margin: 0,
-          maxWidth: 600,
-          backgroundColor: "#dadada",
-          borderRadius: "15px",
-        }}
-      >
+      <Paper elevation={3} style={{ padding: 20 }}>
         <Typography variant="h4" align="center" component="h1" gutterBottom>
           Contact an ambassador
         </Typography>
@@ -107,79 +97,97 @@ function MyForm() {
           reset={reset}
           render={({ handleSubmit, reset, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit} noValidate>
-              <Paper style={{ padding: 16 }}>
-                <Grid container alignItems="flex-start" spacing={2}>
-                  <Grid item xs={6}>
-                    <Field
-                      fullWidth
-                      required
-                      name="firstName"
-                      component={TextField}
-                      type="text"
-                      label="First Name"
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Field
-                      fullWidth
-                      required
-                      name="lastName"
-                      component={TextField}
-                      type="text"
-                      label="Last Name"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field
-                      name="email"
-                      fullWidth
-                      required
-                      component={TextField}
-                      type="text"
-                      label="Email"
-                    />
-                  </Grid>
+              <Field
+                fullWidth
+                required
+                variant="filled"
+                name="firstName"
+                component={TextField}
+                type="text"
+                label="First Name"
+                style={{ marginBottom: 8 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonOutlineOutlinedIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Field
+                fullWidth
+                required
+                variant="filled"
+                name="lastName"
+                component={TextField}
+                type="text"
+                label="Last Name"
+                style={{ marginBottom: 8 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonOutlineOutlinedIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Field
+                name="email"
+                fullWidth
+                required
+                variant="filled"
+                component={TextField}
+                type="email"
+                label="Email"
+                style={{ marginBottom: 8 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailOutlinedIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Field
+                fullWidth
+                name="feedback"
+                required
+                variant="filled"
+                style={{ marginBottom: 8 }}
+                component={TextField}
+                multiline
+                label="What can we help you with?"
+              />
 
-                  <Grid item xs={12}>
-                    <Field
-                      fullWidth
-                      name="feedback"
-                      required
-                      component={TextField}
-                      multiline
-                      label="What can we help you with?"
-                    />
-                  </Grid>
-
-                  <Grid item style={{ marginTop: 16 }}>
-                    <Button
-                      type="button"
-                      variant="contained"
-                      onClick={reset}
-                      disabled={submitting || pristine}
-                    >
-                      Reset
-                    </Button>
-                  </Grid>
-                  <Grid item style={{ marginTop: 16 }}>
-                    <Button
-                      item
-                      style={{ backgroundColor: "#62d98a", color: "black" }}
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      disabled={state.submitting}
-                    >
-                      Submit
-                    </Button>
-                  </Grid>
+              <Grid container item xs={12} spacing={2}>
+                <Grid item style={{ marginTop: 16 }}>
+                  <Button
+                    type="button"
+                    variant="contained"
+                    onClick={reset}
+                    disabled={submitting || pristine}
+                  >
+                    Reset
+                  </Button>
                 </Grid>
-              </Paper>
+                <Grid item style={{ marginTop: 16 }}>
+                  <Button
+                    item
+                    style={{ backgroundColor: "#62d98a", color: "black" }}
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={submitting}
+                  >
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
             </form>
           )}
         />
-      </div>
-    </div>
+      </Paper>
+    </Grid>
   );
 }
 

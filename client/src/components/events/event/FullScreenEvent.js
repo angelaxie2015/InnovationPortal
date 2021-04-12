@@ -18,7 +18,6 @@ const useStyles = makeStyles({
     root: {
       width: "100%",
       minheight: "100vh",
-      backgroundColor: blue
     },
     img: {
         width: "100%",
