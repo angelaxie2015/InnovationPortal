@@ -40,7 +40,7 @@ const validate = (values) => {
 };
 
 function MyForm() {
-  const [state, handleSubmit] = useForm("xjvjvzyz");
+  const [state, handleSubmit] = useForm("xgereqkk");
   if (state.succeeded) {
     return (
       <div
@@ -135,7 +135,7 @@ function MyForm() {
                       fullWidth
                       required
                       component={TextField}
-                      type="email"
+                      type="text"
                       label="Email"
                     />
                   </Grid>
