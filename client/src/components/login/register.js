@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/userContext.js";
-import './login.css';
+import "./login.css";
 import Axios from "axios";
 
 export default function Register(){
@@ -97,5 +97,3 @@ export default function Register(){
 	)
 	
 }
-
-

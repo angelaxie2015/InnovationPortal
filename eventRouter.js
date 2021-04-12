@@ -1,21 +1,24 @@
 import express from "express"
-import Event from "./eventdb.js"
+import connectionFactory from "./db.js"
 
 const router = express.Router();
+const Event = connectionFactory().model("Event")
 
-//post an event  events/
+// @route POST /events
+// @desc Create an Event
+// @access public
 router.post("/", async (req, res) => {
-	try{
-		const {title, time, description, image} = req.body;
+	try {
+		const { title, date, description, filename } = req.body;
 
-		if(!title || !time || !description){
+		if(!title || !date || !description){
 			return res
 					.status(400)
 					.json({msg: "Enter all fields"});
 		}
 
 		const newEvent = new Event({
-			title, time, description, image
+			title, date, description, filename
 		});
 
 		const saveEvent = await newEvent.save();
@@ -105,5 +108,14 @@ router.post("/getAttendee", async (req, res) => {
 	}
 });
 
+
+// @route get /events
+// @desc get All Events
+// @access Public
+router.get("/", (req, res) => {
+	Event.find()
+		.sort({ date: -1 })
+		.then(events => res.json(events));
+});
 
 export default router;
