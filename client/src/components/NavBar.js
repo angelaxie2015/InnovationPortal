@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import UserContext from "./context/userContext.js";
 import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles({
   navLink: {
@@ -43,6 +44,7 @@ export default function NavBar() {
       {user.user ? (
         <Grid item key={"Dashboard"}>
           <Button onClick={dashboard} className={classes.navLink}>
+            <AccountCircleIcon />
             {user.user.userName}
           </Button>
         </Grid>
