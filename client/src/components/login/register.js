@@ -4,6 +4,7 @@ import UserContext from "../context/userContext.js";
 import "./login.css";
 import Axios from "axios";
 import { Form, Field } from 'react-final-form';
+import { OnChange } from 'react-final-form-listeners';
 import { TextField } from 'final-form-material-ui';
 import { Grid, Paper, InputAdornment, Link, Button } from '@material-ui/core';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
@@ -76,7 +77,6 @@ export default function Register(){
 							name="user"
 							component={TextField}
 							label="Username"
-							onChange={ (e) => setUserName(e.target.value)} 
 							style={{ marginBottom: 8}}
 							InputProps={{
 							startAdornment: (
@@ -86,6 +86,9 @@ export default function Register(){
 							),
 							}}
                   		/>
+						<OnChange name="user">
+							{(e) => setUserName(e)}
+						</OnChange>  
 						<Field
 							fullWidth
 							required
@@ -94,7 +97,6 @@ export default function Register(){
 							component={TextField}
 							type="email"
 							label="Email"
-							onChange={ (e) => setEmail(e.target.value)} 
 							style={{ marginBottom: 8}}
 							InputProps={{
 							startAdornment: (
@@ -104,6 +106,9 @@ export default function Register(){
 							),
 							}}
                   		/>
+						<OnChange name="email">
+							{(e) => setEmail(e)}
+						</OnChange>  
 						<Field
 							fullWidth
 							required
@@ -112,7 +117,6 @@ export default function Register(){
 							component={TextField}
 							type="password"
 							label="Password"
-							onChange={ (e) => setPass(e.target.value)} 
 							style={{ marginBottom: 8}}
 							InputProps={{
 							startAdornment: (
@@ -122,6 +126,9 @@ export default function Register(){
 							),
 							}}
                   		/>
+						<OnChange name="pass">
+							{(e) => setPass(e)}
+						</OnChange>  
 						<Field
 							fullWidth
 							required
@@ -129,8 +136,7 @@ export default function Register(){
 							name="checkPass"
 							component={TextField}
 							type="password"
-							label="Confirm Password"
-							onChange={ (e) => setCheckPassword(e.target.value)} 
+							label="Confirm Password" 
 							style={{ marginBottom: 8}}
 							InputProps={{
 							startAdornment: (
@@ -140,6 +146,9 @@ export default function Register(){
 							),
 							}}
                   		/>
+						<OnChange name="checkPass">
+							{(e) => setCheckPassword(e)}
+						</OnChange>    
 
 						<Grid container xs={12} alignItems="center">
 						<Grid item xs={6}>
