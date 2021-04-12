@@ -1,11 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import UserContext from "./context/userContext.js";
-
-import { 
-    Grid,
-    Button
-} from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -14,7 +10,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function NonUserNavBar() {
+export default function NavBar() {
     const classes = useStyles();
 
     const { user, setUser } = useContext(UserContext);
@@ -24,12 +20,7 @@ export default function NonUserNavBar() {
     const login = () => history.push("/login");
     const event = () => history.push("/events");
     const contact = () => history.push("/contact");
-    const logout = () => {
-        setUser({
-            token: undefined,
-            user: undefined
-        });
-    };
+    const dashboard = () => history.push("/dashboard")
 
     return (
         <Grid container className={classes.root} justify={'flex-end'}>
@@ -42,15 +33,15 @@ export default function NonUserNavBar() {
             
             { user.user ? 
                 (
-                    <Grid item key={"Log Out"}>
-                        <Button className={classes.navLink} onClick={logout}>Log out</Button>
+                    <Grid item key={"Dashboard"}>
+                        <Button onClick={dashboard} className={classes.navLink}>{user.user.userName}</Button>
                     </Grid>
                 ) : (
                      <>
                         <Grid item key={"Log In"}>
                             <Button onClick={login} className={classes.navLink}>Log In</Button>
                         </Grid>
-                        <Grid item key={"Log In"}>
+                        <Grid item key={"Register"}>
                             <Button onClick={register} className={classes.navLink}>Register</Button>
                         </Grid>
                      </>

@@ -8,8 +8,10 @@ import UserContext from "./context/userContext.js"
 import Axios from "axios"
 import Events from './events/Events';
 import MyForm from './contact/contact.js'
-import NonUserNavBar from "./NonUserNavBar.js"
+import NavBar from "./NavBar.js"
 import FullScreenEvent from "./events/event/FullScreenEvent.js"
+import Dashboard from './dashboard/Dashboard';
+import AddEvent from './addevent/AddEvent';
 
 function App() {
   const [user, setUser] = useState({
@@ -52,12 +54,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
           <UserContext.Provider value={{user, setUser}}>
-            <NonUserNavBar />
+            <NavBar />
             <Switch>
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route path='/contact' component={MyForm} />
               <Route path='/eventDetail' component={FullScreenEvent} />
+              <Route path='/dashboard' component={Dashboard}/>
+              <Route path='/addEvent' component={AddEvent}/>
               <Route path='/' component={Events} />
 
               <Route path='/'>
