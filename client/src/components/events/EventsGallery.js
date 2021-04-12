@@ -18,8 +18,8 @@ export default function EventsGallery(props) {
     return (
         <Grid container spacing={6} className={classes.gridList}>
             {events.map((event) => (
-                <Grid item key={event.title} style={{height: "100%"}}>
-                    <Event event={event} />
+                <Grid item key={event._id} style={{height: "100%"}}>
+                    <Event event={event}/>
                 </Grid>
             ))}
         </Grid>

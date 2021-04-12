@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/userContext.js";
-import './login.css';
+import "./login.css";
 import Axios from "axios";
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
@@ -20,41 +20,49 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 	return errors;
   };
 
-export default function Login(){
-	const [email, setEmail] = useState();
-	const [pass, setPass] = useState();
+export default function Login() {
+  const [email, setEmail] = useState();
+  const [pass, setPass] = useState();
 
-	const {setUser} = useContext(UserContext);
-	const history = useHistory();
+  const { setUser } = useContext(UserContext);
+  const history = useHistory();
 
-	const submit = async (e) => {
-		e.preventDefault();
-		const loginUser = {email, pass};
+  const submit = async (e) => {
+    var updateUser = true;
+    e.preventDefault();
+    const loginUser = { email, pass };
 
-		const loginRes = await Axios.post("http://localhost:8001/users/login", loginUser)
-									.catch((error) => {
-										console.log(error.message);
-										console.log(error.response.data);  
-         								console.log(error.response.status);  
-         								console.log(error.response.headers);
-									});
-		
-		setUser({
-			token: loginRes.data.token,
-			user: loginRes.data.user 
-		});
+    const loginRes = await Axios.post(
+      "http://localhost:8001/users/login",
+      loginUser
+    ).catch((error) => {
+      updateUser = false;
+      console.log("an error has occurred" + error.message);
+      if (error.response.data.msg === "Incorrect password.") {
+        alert("incorrect password");
+      }
+      console.log(error.message);
+      console.log(error.response.data);
+    });
 
-		localStorage.setItem("auth-token", loginRes.data.token);
+    if (updateUser) {
+      setUser({
+        token: loginRes.data.token,
+        user: loginRes.data.user,
+        role: loginRes.data.user.role,
+      });
 
-		//redirecting
-		history.push("/");
-	}
+      localStorage.setItem("auth-token", loginRes.data.token);
 
-	const redirect = async (e) => {
-		e.preventDefault();
+      //redirecting
+      history.push("/");
+    }
+  };
 
-		history.push("/register");
-	}
+  const redirect = async (e) => {
+    e.preventDefault();
+	history.push("/register");
+};
 
 	return (
 		<Grid container alignItems="center" class="login-register-body">
@@ -156,6 +164,5 @@ export default function Login(){
 		// 	    </div>
 	    // 	</div>
 	    // </div>
-
-	);
+  );
 }

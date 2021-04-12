@@ -12,20 +12,22 @@ import {
 } from '@material-ui/core';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import { useForm, ValidationError } from "@formspree/react";
 
 
 const onSubmit = async (values) => {
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
+  // useForm("xjvjvzyz");
+  // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // await sleep(300);
+  // window.alert(JSON.stringify(values, 0, 2));
 };
 
 const reset = (values) => {
-  values.firstName = '';
-  values.lastName = '';
-  values.email = '';
-  values.feedback = '';
-  window.alert('Testing on reset')
+  values.firstName = "";
+  values.lastName = "";
+  values.email = "";
+  values.feedback = "";
+  window.alert("Testing on reset");
 
   return values;
 };
@@ -33,21 +35,48 @@ const reset = (values) => {
 const validate = (values) => {
   const errors = {};
   if (!values.firstName) {
-    errors.firstName = 'Required';
+    errors.firstName = "Required";
   }
   if (!values.lastName) {
-    errors.lastName = 'Required';
+    errors.lastName = "Required";
   }
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = "Required";
   }
   if (!values.feedback) {
-    errors.feedback = 'Required';
+    errors.feedback = "Required";
   }
   return errors;
 };
 
 function MyForm() {
+  const [state, handleSubmit] = useForm("xgereqkk");
+  if (state.succeeded) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          margin: "auto",
+        }}
+      >
+        <a href="/events">
+          <img
+            style={{
+              margin: 0,
+            }}
+            className="login-image"
+            src="../../ia_logo.png"
+            alt="ia-logo"
+          ></img>
+        </a>
+        <Typography variant="h4" align="center" component="h1" gutterBottom>
+          Form submitted sucessfully, an ambassador will reach out to you soon.
+        </Typography>
+      </div>
+    );
+  }
   return (
     <Grid container xs={12} alignContent="center" justify="center" style= {{width: "50vh", margin: "auto"}}>
     <Paper elevation={3} style={{padding: 20}}>
@@ -157,4 +186,3 @@ function MyForm() {
 }
 
 export default MyForm;
-//ReactDOM.render(<App />, document.querySelector('#root'));

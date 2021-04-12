@@ -1,8 +1,9 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, CardActionArea } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
+import Axios from "axios";
 
 const useStyles = makeStyles({
     root: {
@@ -18,18 +19,30 @@ const useStyles = makeStyles({
 });
 
 export default function Event(props) {
-    const { event } = props;
-    const classes = useStyles();
-    
-    const history = useHistory();
-    const openEventDetails = (event) => {
-        history.push({
-            pathname: "/eventDetail",
-            state: event
-        });
-    };
+  const { event } = props;
+  const [image, setImage] = useState(placeholder);
 
-    return (
+useEffect(() => {
+  if (event.filename) {
+    Axios.get(`http://localhost:8001/uploads/${event.filename}`).then(
+      (res) => {
+        setImage(res.config.url);
+      }
+    );
+  }
+}, []);
+
+const classes = useStyles();
+
+const history = useHistory();
+const openEventDetails = (event) => {
+  history.push({
+    pathname: "/eventDetail",
+    state: event,
+  });
+};    
+
+  return (
         <CardActionArea onClick={ () => openEventDetails(event) } className={classes.root}>
             <img src={placeholder} className={classes.img}/>
             <CardContent style={{ height: "30%" }}>
@@ -41,12 +54,12 @@ export default function Event(props) {
                     </Grid>
                     <Grid item xs={6}>
                         <Typography align="right" variant="body1" component="p">
-                            {event.date.toDateString()}
+                          {new Date(event.date).toDateString()}
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body2" component="p">
-                            {event.desc}
+                          {event.description}
                         </Typography>
                     </Grid>
                 </Grid>

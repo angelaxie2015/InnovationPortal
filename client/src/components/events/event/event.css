@@ -1,0 +1,42 @@
+.fullevent.check-in {
+	color: ##6BE293;
+}
+
+.buttons {
+	margin: 1px;
+}
+
+.fullevent {
+	margin: 3% auto;
+	width: 60%;
+}
+
+/* Popup */
+.popup {
+	background-color: #DADADA;
+	position: fixed;
+	left: 25%;
+	width: 50%;
+	border-radius: 30px;
+
+	margin: 0 auto;
+}
+
+.close-btn {
+	position: fixed;
+	right: 25%;
+	background-color: red;
+}
+
+.input-box {
+	background-color: #EEEEEE;
+	border-radius: 20px;
+	padding-left: 5px;
+	width: 60%;
+	margin: 3% auto;
+}
+
+.checkin-button {
+	position: relative;
+	left: 2%;
+}

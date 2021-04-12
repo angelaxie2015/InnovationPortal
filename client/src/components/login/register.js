@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/userContext.js";
-import './login.css';
+import "./login.css";
 import Axios from "axios";
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
@@ -27,6 +27,8 @@ export default function Register(){
 
 	const submit = async (e) => {
 		e.preventDefault();
+		console.log("clicked on submit in register");
+
 		const newUser = {email, pass, checkPassword, userName};
 		await Axios.post("http://localhost:8001/users/register", newUser).catch((error) => {
 										console.log(error.message);
@@ -43,7 +45,7 @@ export default function Register(){
          								console.log(error.response.status);  
          								console.log(error.response.headers);
 									});
-		
+
 		setUser({
 			token: loginRes.data.token,
 			user: loginRes.data.user 
@@ -210,5 +212,3 @@ export default function Register(){
 	)
 	
 }
-
-
