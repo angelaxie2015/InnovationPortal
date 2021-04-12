@@ -100,6 +100,10 @@ export default function FullEvent(props) {
         }
     }
 
+    const addPasscode = async () => {
+
+    }
+
     //list all the attendee
     const list = async () => {
         console.log("in full screen event is");
@@ -185,15 +189,6 @@ export default function FullEvent(props) {
                                 >
                                    Delete
                                 </Button><br /><br />
-
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    className={classes.button}
-                                    startIcon={<DeleteIcon />}
-                                >
-                                   Add Passcode
-                                </Button>
                                 
                             </> : 
 
