@@ -1,6 +1,5 @@
 import { React, useState, useEffect, useContext} from 'react';
 import { useLocation } from "react-router-dom";
-import Axios from "axios"
 import placeholder from '../../../placeholder.png'
 import { Card, CardContent, Typography, Grid, Container, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -185,6 +184,15 @@ export default function FullEvent(props) {
                                     startIcon={<DeleteIcon />}
                                 >
                                    Delete
+                                </Button><br /><br />
+
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    startIcon={<DeleteIcon />}
+                                >
+                                   Add Passcode
                                 </Button>
                                 
                             </> : 
