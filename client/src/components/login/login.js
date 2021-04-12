@@ -100,8 +100,8 @@ export default function Login() {
 							variant="filled"
 							name="pass"
 							component={TextField}
-							type="email"
-							label="Email"
+							type="password"
+							label="Password"
 							onChange={ (e) => setPass(e.target.value)}  
 							style={{ marginBottom: 8}}
 							InputProps={{
