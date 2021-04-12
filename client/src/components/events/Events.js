@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import logo from '../../logo.png';
-import SearchBar from '../SearchBar';
-import NavBar from '../NavBar';
-import EventsGallery from './EventsGallery';
-import { Grid, Button, Hidden } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from "react";
+import logo from "../../logo.png";
+import SearchBar from "../SearchBar";
+import NavBar from "../NavBar";
+import EventsGallery from "./EventsGallery";
+import { Grid, Button, Hidden } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Axios from "axios";
 
 const useStyles = makeStyles({
@@ -34,46 +34,14 @@ const useStyles = makeStyles({
 });
 
 export default function Events(props) {
-  // hardcode events for testing purposes and because DB not set up yet
-  const [events, setEvents] = useState([
-    {
-      title: "React Workshop",
-      date: new Date("Sun Mar 14 2021"),
-      desc: "Learn React",
-    },
-    {
-      title: "Taco Tuesday",
-      date: new Date("Mon Mar 15 2021"),
-      desc: "Eat Tacos",
-    },
-    {
-      title: "Kotlin Workshop",
-      date: new Date("Wed Mar 17 2021"),
-      desc: "Learn Kotlin",
-    },
-    {
-      title: "Fundraiser",
-      date: new Date("Sat Mar 20 2021"),
-      desc: "Get Money",
-    },
-    eventsGalleryContainer: {
-        marginTop: 30,
-        marginBottom: 50,
-        overflow: 'hidden',
-    }
-});
+  const [events, setEvents] = useState([]);
 
-export default function Events(props) {
-    
-    const [events, setEvents] = useState([]);
-
-    useEffect(() => {    
-        Axios.get("http://localhost:8001/events/")
-            .then(function (res) {
-            setEvents(res.data);
-            console.log(res.data);
-        });
-    }, [])
+  useEffect(() => {
+    Axios.get("http://localhost:8001/events/").then(function (res) {
+      setEvents(res.data);
+      console.log(res.data);
+    });
+  }, []);
 
   const classes = useStyles();
 
