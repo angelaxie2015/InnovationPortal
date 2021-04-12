@@ -92,7 +92,7 @@ function MyForm() {
           Fill out the following fields to get in contact with an ambassador.
         </Typography>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit}
           validate={validate}
           reset={reset}
           render={({ handleSubmit, reset, submitting, pristine, values }) => (
