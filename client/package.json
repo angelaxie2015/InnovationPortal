@@ -21,6 +21,7 @@
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.1",
     "react-final-form": "^6.5.3",
+    "react-final-form-listeners": "^1.0.3",
     "react-hook-form": "^7.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
