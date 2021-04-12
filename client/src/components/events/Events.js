@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import logo from "../../logo.png";
-import SearchBar from "../SearchBar";
-import NonUserNavBar from "../NonUserNavBar";
-import EventsGallery from "./EventsGallery";
-import { Grid, Button, Hidden } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from 'react';
+import logo from '../../logo.png';
+import SearchBar from '../SearchBar';
+import NavBar from '../NavBar';
+import EventsGallery from './EventsGallery';
+import { Grid, Button, Hidden } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -55,32 +56,24 @@ export default function Events(props) {
       date: new Date("Sat Mar 20 2021"),
       desc: "Get Money",
     },
-    {
-      title: "Meat Cookoff",
-      date: new Date("Sat Mar 20 2021"),
-      desc: "Cook Meat",
-    },
-    {
-      title: "JS Convention",
-      date: new Date("Sat Mar 20 2021"),
-      desc: "Learn JS",
-    },
-    {
-      title: "Ramsay Fundraiser",
-      date: new Date("Sat Mar 20 2021"),
-      desc: "Get Money",
-    },
-    {
-      title: "Business Meeting",
-      date: new Date("Sat Mar 20 2021"),
-      desc: "Do Business",
-    },
-    {
-      title: "Spanish Hang Out",
-      date: new Date("Sat Mar 20 2021"),
-      desc: "Hang out with Spanish",
-    },
-  ]);
+    eventsGalleryContainer: {
+        marginTop: 30,
+        marginBottom: 50,
+        overflow: 'hidden',
+    }
+});
+
+export default function Events(props) {
+    
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {    
+        Axios.get("http://localhost:8001/events/")
+            .then(function (res) {
+            setEvents(res.data);
+            console.log(res.data);
+        });
+    }, [])
 
   const classes = useStyles();
 
