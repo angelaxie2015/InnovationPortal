@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import logo from '../../logo.png';
 import SearchBar from '../SearchBar';
 import EventsGallery from './EventsGallery';
@@ -15,22 +16,27 @@ const useStyles = makeStyles({
     logo: {
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 20,
         marginBottom: 30
     },
     button: {
         marginRight: 30,
         marginLeft: 30,
+        marginTop: 25,
     },
     eventsGalleryContainer: {
-        marginBottom: 50,
-        marginLeft: 30,
         height: "100%",
-    }
+        marginBottom: 50,
+        marginRight: 10,
+        marginLeft: 10,
+    },
+    searchBar: {
+      marginTop: 25,
+    },
 });
 
 export default function Events(props) {
   const [events, setEvents] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     Axios.get("http://localhost:8001/events/").then(function (res) {
@@ -44,6 +50,8 @@ export default function Events(props) {
   const handleSearch = (query) => {
     console.log(query);
   };
+
+  const pastEvents = () => history.push("/pastEvents");
 
   return (
     <div className={classes.root}>
@@ -60,7 +68,7 @@ export default function Events(props) {
             </Grid>
             <Hidden only="xs">
               <Grid item className={classes.button}>
-                <Button variant="contained">Past Events</Button>
+                <Button variant="contained" onClick={pastEvents}>Past Events</Button>
               </Grid>
             </Hidden>
           </Grid>

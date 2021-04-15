@@ -13,8 +13,8 @@ import Axios from "axios";
 
 const useStyles = makeStyles({
   root: {
-    width: "700px",
-    height: "50vh",
+    width: "100%",
+    height: "100%",
     backgroundColor: "white",
   },
   img: {
@@ -49,30 +49,33 @@ export default function Event(props) {
   };
 
   return (
-    <CardActionArea
-      onClick={() => openEventDetails(event)}
-      className={classes.root}
-    >
-      <img src={image} className={classes.img} />
-      <CardContent style={{ height: "30%" }}>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {event.title}
-            </Typography>
+    <Card className={classes.root}>
+      <CardActionArea
+        onClick={() => openEventDetails(event)}
+        style={{ height: "100%", width: "100%" }}
+      >
+        <img src={image} className={classes.img} />
+        <CardContent style={{ height: "30%" }}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography gutterBottom variant="h5" component="h2">
+                {event.title}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography align="right" variant="body1" component="p">
+                {new Date(event.date).toDateString()}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body2" component="p">
+                {event.description}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Typography align="right" variant="body1" component="p">
-              {new Date(event.date).toDateString()}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body2" component="p">
-              {event.description}
-            </Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </CardActionArea>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+
   );
 }
