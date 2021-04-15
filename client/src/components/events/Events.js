@@ -40,8 +40,7 @@ export default function Events(props) {
 
   useEffect(() => {
     Axios.get("http://localhost:8001/events/").then(function (res) {
-      setEvents(res.data);
-      console.log(res.data);
+      setEvents(res.data.slice(0,10)); // take only top 10 events
     });
   }, []);
 
