@@ -13,6 +13,7 @@ import FullScreenEvent from "./events/event/FullScreenEvent.js";
 import Dashboard from "./dashboard/Dashboard";
 import AddEvent from "./addevent/AddEvent";
 import faq from "./faqpage/faqpage.js";
+import PastEvents from "./pastevents/PastEvents.js"
 
 function App() {
   const [user, setUser] = useState({
@@ -62,6 +63,7 @@ function App() {
             <Route path="/faqpage" component={faq} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/addEvent" component={AddEvent} />
+            <Route path="/pastEvents" component={PastEvents} />
             <Route path="/" component={Events} />
 
             <Route path="/">
