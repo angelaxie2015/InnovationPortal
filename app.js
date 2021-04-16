@@ -13,10 +13,6 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-app.use("/events", eventRouter);
-app.use("/users", userRouter);
-app.use("/uploads", gridfsRouter);
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
@@ -25,6 +21,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+app.use("/events", eventRouter);
+app.use("/users", userRouter);
+app.use("/uploads", gridfsRouter);
 app.use("/", (req, res) => res.status(200).send("hello world"));
 const PORT = process.env.PORT || 8001;
 app.listen(PORT, () => console.log(`The server started on port: ${PORT}`));
