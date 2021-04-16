@@ -66,7 +66,13 @@ export default function Login() {
   };
 
   return (
-    <Grid container alignItems="center" class="login-register-body">
+    <Grid
+      container
+      xs={12}
+      alignContent="center"
+      justify="center"
+      style={{ width: "50vh", margin: "auto" }}
+      >
       <Grid container xs={12} alignContent="center" justify="center">
         <img
           className="login-image"
@@ -84,7 +90,7 @@ export default function Login() {
                 <Field
                   fullWidth
                   required
-                  variant="filled"
+                  variant="outlined"
                   name="email"
                   component={TextField}
                   type="email"
@@ -102,7 +108,7 @@ export default function Login() {
                 <Field
                   fullWidth
                   required
-                  variant="filled"
+                  variant="outlined"
                   name="pass"
                   component={TextField}
                   type="password"

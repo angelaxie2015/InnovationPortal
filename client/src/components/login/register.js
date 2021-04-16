@@ -59,7 +59,13 @@ export default function Register(){
 	}
 
 	return (
-		<Grid container alignItems="center" class="login-register-body">
+			<Grid
+			container
+			xs={12}
+			alignContent="center"
+			justify="center"
+			style={{ width: "50vh", margin: "auto" }}
+			>
 			<Grid container xs={12} alignContent="center" justify="center">
 				<img className="login-image" src="../../ia_logo.png" alt="ia-logo"></img>
 			</Grid>
@@ -73,7 +79,7 @@ export default function Register(){
 						<Field
 							fullWidth
 							required
-							variant="filled"
+							variant="outlined"
 							name="user"
 							component={TextField}
 							label="Username"
@@ -92,7 +98,7 @@ export default function Register(){
 						<Field
 							fullWidth
 							required
-							variant="filled"
+							variant="outlined"
 							name="email"
 							component={TextField}
 							type="email"
@@ -112,7 +118,7 @@ export default function Register(){
 						<Field
 							fullWidth
 							required
-							variant="filled"
+							variant="outlined"
 							name="pass"
 							component={TextField}
 							type="password"
@@ -132,7 +138,7 @@ export default function Register(){
 						<Field
 							fullWidth
 							required
-							variant="filled"
+							variant="outlined"
 							name="checkPass"
 							component={TextField}
 							type="password"
@@ -154,7 +160,7 @@ export default function Register(){
 						<Grid item xs={6}>
 						</Grid>
 						<Grid item xs={6} style={{display: "flex", justifyContent: "flex-end"}}>
-							<Button item style={{backgroundColor: '#62d98a', color: 'black'}}
+							<Button item style={{backgroundColor: '#62d98a', color: "black"}}
 							variant="contained"
 							color="primary"
 							type="submit"
