@@ -26,7 +26,6 @@ const useStyles = makeStyles({
         marginBottom: 50,
         marginLeft: 30,
         height: "100%",
-        overflow: 'hidden',
     }
 });
 
