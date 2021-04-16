@@ -100,7 +100,7 @@ function MyForm() {
               <Field
                 fullWidth
                 required
-                variant="filled"
+                variant="outlined"
                 name="firstName"
                 component={TextField}
                 type="text"
@@ -117,7 +117,7 @@ function MyForm() {
               <Field
                 fullWidth
                 required
-                variant="filled"
+                variant="outlined"
                 name="lastName"
                 component={TextField}
                 type="text"
@@ -135,7 +135,7 @@ function MyForm() {
                 name="email"
                 fullWidth
                 required
-                variant="filled"
+                variant="outlined"
                 component={TextField}
                 type="email"
                 label="Email"
@@ -152,7 +152,7 @@ function MyForm() {
                 fullWidth
                 name="feedback"
                 required
-                variant="filled"
+                variant="outlined"
                 style={{ marginBottom: 8 }}
                 component={TextField}
                 multiline

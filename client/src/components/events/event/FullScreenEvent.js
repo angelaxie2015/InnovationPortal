@@ -11,6 +11,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Axios from "axios";
 import PopUp from "./PopUp.js";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
 import { InputBase } from '@material-ui/core';
 import "./event.css"
 
@@ -63,6 +69,16 @@ export default function FullEvent(props) {
         setPasscode(event.target.value);
         
     }
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const [attendee, setAttendee] = useState([]);
 
@@ -140,7 +156,7 @@ export default function FullEvent(props) {
                 <Grid item xs={10}>
                     <Container>
                         <Card variant="outlined"className={classes.root}>
-                            <img src={placeholder} className={classes.img}/>
+                            <img src={image} className={classes.img}/>
                             <CardContent>
                                 <Grid className={classes.content}>
                                     <Grid item xs={12}>
@@ -167,7 +183,7 @@ export default function FullEvent(props) {
                 <Grid item xs={2}>
                     { user.user ? 
                         <>
-                        <Button variant="contained" onClick={() => setButtonPopup(true)} color="primary" startIcon={<CheckIcon />}>
+                        <Button variant="contained" onClick={handleClickOpen} color="primary" startIcon={<CheckIcon />}>
                             Check In
                         </Button ><br /><br />
 
@@ -204,21 +220,29 @@ export default function FullEvent(props) {
 
                         } 
                         
-
-                        <PopUp trigger={buttonPopup} setTrigger={setButtonPopup}>
-                               <div className="input-box">
-                                   <InputBase
-                                        className={classes.input}
-                                        placeholder={`Enter Passcode: `}
-                                        inputProps={{ 'aria-label': `${props.item}` }}
-                                        onChange = {handleChange}
-                                    />
-                                    <br />
-                                </div>
-                            <Button className="checkin-button" variant="contained" onClick={ () => checkIn(event, user) } color="primary" startIcon={<CheckIcon />}>
+                        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                            <DialogContent>
+                            <TextField
+                                required
+                                variant="filled"
+                                name="meeting-code"
+                                type="text"
+                                label="Meeting Code"
+                                autoFocus
+                                margin="dense"
+                                fullWidth
+                                onChange = {handleChange}
+                            />
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                Cancel
+                            </Button>
+                            <Button onClick={ () => checkIn(event, user) } color="primary">
                                 Check In
-                            </Button ><br /><br />
-                        </PopUp>
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
 
                         </> :
                         

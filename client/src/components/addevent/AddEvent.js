@@ -143,7 +143,7 @@ export default function AddEvent(props) {
                                         label="Date"
                                         format="MM/dd/yyyy"
                                         disableToolbar
-                                        variant="inline"
+                                        variant="outlined"
                                         inputVariant="outlined"
                                         fullWidth
                                         KeyboardButtonProps={{
