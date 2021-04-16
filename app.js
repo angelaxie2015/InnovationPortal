@@ -14,6 +14,9 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => res.status(200).send("hello world"));
+app.use("/events", eventRouter);
+app.use("/users", userRouter);
+app.use("/uploads", gridfsRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -24,7 +27,3 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.listen(PORT, () => console.log(`The server started on port: ${PORT}`));
-
-app.use("/events", eventRouter);
-app.use("/users", userRouter);
-app.use("/uploads", gridfsRouter);
