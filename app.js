@@ -22,10 +22,10 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-module.exports = function (app) {
-  // add other server routes to path array
-  app.use(proxy(["/api"], { target: "http://localhost:5000" }));
-};
+// module.exports = function (app) {
+//   // add other server routes to path array
+//   app.use(proxy(["/api"], { target: "http://localhost:5000" }));
+// };
 
 app.use("/events", eventRouter);
 app.use("/users", userRouter);
