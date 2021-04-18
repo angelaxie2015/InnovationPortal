@@ -45,9 +45,9 @@ export default function Events(props) {
       })
       .catch((error) => {
         console.log(error.message);
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
       });
   }, []);
 
