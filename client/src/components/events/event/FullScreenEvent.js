@@ -57,7 +57,7 @@ export default function FullEvent(props) {
 
   useEffect(() => {
     if (event.filename) {
-      Axios.get(`http://localhost:8001/uploads/${event.filename}`).then(
+      Axios.get(`https://ufia.herokuapp.com/uploads/${event.filename}`).then(
         (res) => {
           setImage(res.config.url);
         }
@@ -90,7 +90,7 @@ export default function FullEvent(props) {
   const checkIn = async () => {
     //check if the passcode is correct
     const correctPassword = await Axios.post(
-      "http://localhost:8001/events/passcode",
+      "https://ufia.herokuapp.com/events/passcode",
       { event, passcode }
     ).catch((error) => {
       console.log(error.message);
@@ -101,10 +101,13 @@ export default function FullEvent(props) {
 
     if (correctPassword.data) {
       //if password input is correct
-      const checkIn = await Axios.post("http://localhost:8001/users/checkin", {
-        user,
-        event,
-      }).catch((error) => {
+      const checkIn = await Axios.post(
+        "hhttps://ufia.herokuapp.com/users/checkin",
+        {
+          user,
+          event,
+        }
+      ).catch((error) => {
         console.log(error.message);
         console.log(error.response.data);
         console.log(error.response.status);
@@ -112,7 +115,7 @@ export default function FullEvent(props) {
       });
 
       const addAttendee = await Axios.post(
-        "http://localhost:8001/events/attend",
+        "https://ufia.herokuapp.com/events/attend",
         { user, event }
       ).catch((error) => {
         console.log(error.message);
@@ -136,7 +139,7 @@ export default function FullEvent(props) {
     console.log(event);
 
     const attendeeRes = await Axios.post(
-      "http://localhost:8001/events/getAttendee",
+      "hhttps://ufia.herokuapp.com/events/getAttendee",
       event
     ).catch((error) => {
       console.log(error.message);

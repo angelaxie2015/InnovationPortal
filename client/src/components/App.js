@@ -13,7 +13,7 @@ import FullScreenEvent from "./events/event/FullScreenEvent.js";
 import Dashboard from "./dashboard/Dashboard";
 import AddEvent from "./addevent/AddEvent";
 import faq from "./faqpage/faqpage.js";
-import PastEvents from "./pastevents/PastEvents.js"
+import PastEvents from "./pastevents/PastEvents.js";
 
 function App() {
   const [user, setUser] = useState({
@@ -30,14 +30,14 @@ function App() {
       }
 
       const tokenRes = await Axios.post(
-        "http://localhost:8001/users/checkToken",
+        "https://ufia.herokuapp.com/users/checkToken",
         null,
         { headers: { "x-auth-token": token } }
       );
 
       console.log(tokenRes.data);
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:8001/users/", {
+        const userRes = await Axios.get("https://ufia.herokuapp.com/users/", {
           headers: { "x-auth-token": token },
         });
         setUser({

@@ -34,7 +34,7 @@ export default function Login() {
     const loginUser = { email, pass };
 
     const loginRes = await Axios.post(
-      "http://localhost:8001/users/login",
+      "https://ufia.herokuapp.com/users/login",
       loginUser
     ).catch((error) => {
       updateUser = false;
@@ -72,7 +72,7 @@ export default function Login() {
       alignContent="center"
       justify="center"
       style={{ width: "50vh", margin: "auto" }}
-      >
+    >
       <Grid container xs={12} alignContent="center" justify="center">
         <img
           className="login-image"
