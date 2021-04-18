@@ -35,8 +35,10 @@ export default function Event(props) {
           setImage(res.config.url);
         })
         .catch((e) => {
-          console.log(e);
-          console.log("https://ufia.herokuapp.com/uploads/${event.filename}");
+          console.log(error.message);
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         });
     }
   }, []);

@@ -43,8 +43,11 @@ export default function Events(props) {
       .then(function (res) {
         setEvents(res.data.slice(0, 10)); // take only top 10 events
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.log(error.message);
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
       });
   }, []);
 

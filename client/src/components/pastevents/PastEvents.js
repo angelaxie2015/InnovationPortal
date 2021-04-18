@@ -39,7 +39,11 @@ export default function PastEvents() {
         console.log(res.data);
       })
       .catch((e) => {
-        console.log(e);
+        console.log("in pastwevents");
+        console.log(error.message);
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
       });
   }, []);
 

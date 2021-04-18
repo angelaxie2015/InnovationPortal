@@ -62,8 +62,11 @@ export default function FullEvent(props) {
           setImage(res.config.url);
         })
         .catch((e) => {
-          console.log(e);
-          console.log("https://ufia.herokuapp.com/uploads/${event.filename}");
+          console.log("int full screen event page");
+          console.log(error.message);
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         });
     }
   }, []);
