@@ -52,6 +52,7 @@ export default function Events(props) {
 
   const pastEvents = () => history.push("/pastEvents");
 
+
   return (
     <div className={classes.root}>
       <Grid container>

@@ -30,7 +30,7 @@ export default function Event(props) {
 
   useEffect(() => {
     if (event.filename) {
-      Axios.get(`https://ufia.herokuapp.com/uploads/${event.filename}`).then(
+      Axios.get("https://ufia.herokuapp.com/uploads/", event.filename).then(
         (res) => {
           setImage(res.config.url);
         }
@@ -76,6 +76,5 @@ export default function Event(props) {
         </CardContent>
       </CardActionArea>
     </Card>
-
   );
 }
