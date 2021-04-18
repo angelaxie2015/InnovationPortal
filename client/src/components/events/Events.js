@@ -39,9 +39,13 @@ export default function Events(props) {
   const history = useHistory();
 
   useEffect(() => {
-    Axios.get("https://ufia.herokuapp.com/events/").then(function (res) {
-      setEvents(res.data.slice(0, 10)); // take only top 10 events
-    });
+    Axios.get("https://ufia.herokuapp.com/events/")
+      .then(function (res) {
+        setEvents(res.data.slice(0, 10)); // take only top 10 events
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   const classes = useStyles();
@@ -51,7 +55,6 @@ export default function Events(props) {
   };
 
   const pastEvents = () => history.push("/pastEvents");
-
 
   return (
     <div className={classes.root}>

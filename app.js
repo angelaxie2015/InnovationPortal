@@ -24,7 +24,9 @@ if (process.env.NODE_ENV === "production") {
 app.use("/events", eventRouter);
 app.use("/users", userRouter);
 app.use("/uploads", gridfsRouter);
+
 app.use("/", (req, res) => res.status(200).send("hello world"));
 app.get("/", (req, res) => res.status(200).send("hello world"));
+
 const PORT = process.env.PORT || 8001;
 app.listen(PORT, () => console.log(`The server started on port: ${PORT}`));

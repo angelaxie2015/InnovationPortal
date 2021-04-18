@@ -30,11 +30,14 @@ export default function Event(props) {
 
   useEffect(() => {
     if (event.filename) {
-      Axios.get("https://ufia.herokuapp.com/uploads/", event.filename).then(
-        (res) => {
+      Axios.get(`https://ufia.herokuapp.com/uploads/${event.filename}`)
+        .then((res) => {
           setImage(res.config.url);
-        }
-      );
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("https://ufia.herokuapp.com/uploads/${event.filename}");
+        });
     }
   }, []);
 

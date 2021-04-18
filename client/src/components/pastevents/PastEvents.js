@@ -33,10 +33,14 @@ export default function PastEvents() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    Axios.get("https://ufia.herokuapp.com/events/").then(function (res) {
-      setEvents(res.data);
-      console.log(res.data);
-    });
+    Axios.get("https://ufia.herokuapp.com/events/")
+      .then(function (res) {
+        setEvents(res.data);
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   const classes = useStyles();
