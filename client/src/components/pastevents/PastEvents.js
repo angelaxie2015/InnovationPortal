@@ -38,7 +38,7 @@ export default function PastEvents() {
         setEvents(res.data);
         console.log(res.data);
       })
-      .catch((e) => {
+      .catch((error) => {
         console.log("in pastwevents");
         console.log(error.message);
         console.log(error.response.data);

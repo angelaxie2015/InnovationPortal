@@ -34,7 +34,7 @@ export default function Event(props) {
         .then((res) => {
           setImage(res.config.url);
         })
-        .catch((e) => {
+        .catch((error) => {
           console.log(error.message);
           console.log(error.response.data);
           console.log(error.response.status);
