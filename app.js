@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import eventRouter from "./eventRouter.js";
 import userRouter from "./userRouter.js";
 import gridfsRouter from "./gridfsRouter.js";
-const proxy = require("http-proxy-middleware");
+//const proxy = require("http-proxy-middleware");
 import path from "path";
 
 const app = express();
@@ -22,10 +22,10 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-module.exports = function(app) {
+module.exports = function (app) {
   // add other server routes to path array
-  app.use(proxy(['/api' ], { target: 'http://localhost:5000' }));
-} 
+  app.use(proxy(["/api"], { target: "http://localhost:5000" }));
+};
 
 app.use("/events", eventRouter);
 app.use("/users", userRouter);
