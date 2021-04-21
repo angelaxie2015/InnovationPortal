@@ -37,6 +37,7 @@ const useStyles = makeStyles({
 export default function Events(props) {
   const [events, setEvents] = useState([]);
   const history = useHistory();
+  
 
   useEffect(() => {
     Axios.get("https://ufia.herokuapp.com/events/")
@@ -58,12 +59,13 @@ export default function Events(props) {
   };
 
   const pastEvents = () => history.push("/pastEvents");
+  const event = () => history.push("/events");
 
   return (
     <div className={classes.root}>
       <Grid container>
         <Grid item>
-          <a href="/events">
+          <a onClick={event}>
             <img src={logo} height={100} className={classes.logo} />
           </a>
         </Grid>

@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Faq() {
   const classes = useStyles();
+  const event = () => history.push("/events");
 
   return (
     <div
@@ -29,7 +30,7 @@ export default function Faq() {
         marginRight: "20%",
       }}
     >
-      <a href="/events">
+      <a onClick={event}>
         <img
           style={{
             margin: 0,
