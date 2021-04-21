@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Faq() {
   const classes = useStyles();
-  const event = () => history.push("/events");
+  // const event = () => history.push("/events");
 
   return (
     <div
@@ -30,16 +30,15 @@ export default function Faq() {
         marginRight: "20%",
       }}
     >
-      <a onClick={event}>
-        <img
-          style={{
-            margin: 0,
-          }}
-          className="login-image"
-          src="../../ia_logo.png"
-          alt="ia-logo"
-        ></img>
-      </a>
+      <img
+        style={{
+          margin: 0,
+        }}
+        className="login-image"
+        src="../../ia_logo.png"
+        alt="ia-logo"
+      ></img>
+
       <Typography variant="h4" align="center" component="h1" gutterBottom>
         Frequently asked questions (FAQ)
       </Typography>
