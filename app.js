@@ -14,6 +14,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+app.use("/events", eventRouter);
+app.use("/users", userRouter);
+app.use("/uploads", gridfsRouter);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
@@ -26,10 +30,6 @@ if (process.env.NODE_ENV === "production") {
 //   // add other server routes to path array
 //   app.use(proxy(["/api"], { target: "http://localhost:5000" }));
 // };
-
-app.use("/events", eventRouter);
-app.use("/users", userRouter);
-app.use("/uploads", gridfsRouter);
 
 //app.use("/", (req, res) => res.status(200).send("hello world"));
 //app.get("/", (req, res) => res.status(200).send("hello world"));
