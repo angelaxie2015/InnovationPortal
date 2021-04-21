@@ -57,9 +57,7 @@ export default function PastEvents() {
     <div className={classes.root}>
       <Grid container style={{ height: "100%" }}>
         <Grid item>
-          <a href="/events">
-            <img src={logo} height={100} className={classes.logo} />
-          </a>
+          <img src={logo} height={100} className={classes.logo} />
         </Grid>
         <Grid item xs>
           <Grid container item alignItems="center">

@@ -61,16 +61,15 @@ function MyForm() {
           margin: "auto",
         }}
       >
-        <a href="/events">
-          <img
-            style={{
-              margin: 0,
-            }}
-            className="login-image"
-            src="../../ia_logo.png"
-            alt="ia-logo"
-          ></img>
-        </a>
+        <img
+          style={{
+            margin: 0,
+          }}
+          className="login-image"
+          src="../../ia_logo.png"
+          alt="ia-logo"
+        ></img>
+
         <Typography variant="h4" align="center" component="h1" gutterBottom>
           Form submitted sucessfully, an ambassador will reach out to you soon.
         </Typography>
