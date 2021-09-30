@@ -137,7 +137,7 @@ function MyForm() {
                 required
                 variant="outlined"
                 component={TextField}
-                type="email"
+                type="text"
                 label="Email"
                 style={{ marginBottom: 8 }}
                 InputProps={{
